@@ -1,0 +1,20 @@
+data CommandInput = foreign java mb.spoofax.core.language.command.CommandInput
+data CommandOutput = foreign java mb.spoofax.core.language.command.CommandOutput
+data ResourcePath = foreign java mb.resource.hierarchical.ResourcePath
+
+func TigerCompileFile(command: CommandInput<Args>) -> CommandOutput {
+  data Args = {
+    file: ResourcePath
+  }
+
+  val file = command.args.file;
+  val literals = listLiteralVals(file);
+  if (literals == null)
+    return new CommandOutput(ListView.of());
+
+  val resultFile = replaceExtension(file, "literals.aterm");
+  write literals to resultFile in UTF8;
+  generates resultFile;
+
+  return new CommandOutput(ListView.of(CommandFeedbacks.showFile(generatedPath, null)));
+}

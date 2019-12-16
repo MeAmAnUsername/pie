@@ -1,0 +1,38 @@
+data CommandInput = foreign java mb.spoofax.core.language.command.CommandInput
+data CommandOutput = foreign java mb.spoofax.core.language.command.CommandOutput
+data ResourcePath = foreign java mb.resource.hierarchical.ResourcePath
+
+func TigerAltCompileFile(command: CommandInput<Args>) -> CommandOutput {
+  data Args = {
+    file: ResourcePath,
+    listDefNames: boolean,
+    base64Encode: boolean,
+    compiledFileNameSuffix: String
+  }
+
+  val args: Args = command.args;
+  val file = args.file;
+
+  val str: String? = if (args.listDefNames) {
+    listDefNames(file)
+  } else {
+    listLiteralVals(file)
+  }
+
+  if (str == null) {
+    return CommandOutput(ListView.of())
+  }
+
+  if (args.base64Encode) {
+    str = Base64.getEncoder().encodeToString(str.getBytes(StandardCharsets.UTF_8));
+  }
+
+  val newFile = replaceExtension(file, args.compiledFileNameSuffix);
+  Util.writeFile(
+    newFile,
+    string,
+    StandardCharsets.UTF_8
+  );
+  generates generatedFile by hash;
+  return new CommandOutput(ListView.of(CommandFeedbacks.showFile(newFile, null)));
+}

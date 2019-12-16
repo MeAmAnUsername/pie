@@ -1,0 +1,27 @@
+data CommandInput = foreign java mb.spoofax.core.language.command.CommandInput
+data CommandOutput = foreign java mb.spoofax.core.language.command.CommandOutput
+data ResourcePath = foreign java mb.resource.hierarchical.ResourcePath
+
+func TigerCompileDirectory(command: CommandInput<Args>) -> CommandOutput = {
+  data Args = {
+    dir: ResourcePath
+  }
+
+  val dir = command.args.dir;
+  val stringList = [{
+    val defnames: String? = listDefNames(file.getKey());
+    if (defnames != null) "$defnames\n" else "[]\n"
+  } | file <- walk dir with extension "tig"]
+
+  val result = if (stringList is empty)
+    "[\n]"
+  else
+    join stringList with "[\n  ", "\n, ", "\n]"
+
+  val resultFile = dir + "_defnames.aterm"
+
+  write result to resultFile in UTF8
+  generates resultFile
+
+  return new CommandOutput(ListView.of(CommandFeedbacks.showFile(generatedPath, null)));
+}

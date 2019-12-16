@@ -1,0 +1,26 @@
+data CommandInput = foreign java mb.spoofax.core.language.command.CommandInput
+data CommandOutput = foreign java mb.spoofax.core.language.command.CommandOutput
+data ResourcePath = foreign java mb.resource.hierarchical.ResourcePath
+
+func TigerShowAnalyzedAst(command: CommandInput<Args>) -> CommandOutput {
+  data Args = {
+    key: ResourceKey,
+    region: Region
+  }
+
+  val key = commands.args.key
+
+  val analysisResult: ConstraintAnalyzer.SingleFileResult? = analyze(key);
+  if (analysisResult == null)
+    fail "Cannot show analyzed AST, analysis result for '$key' is null";
+  if (analysisResult.ast == null)
+    fail "Cannot show analyzed AST, analyzed AST for '$key' is null";
+
+  val term = if (commands.args.region == null)
+    TermTracer.getSmallestTermEncompassingRegion(analysisResult.ast, commands.args.region)
+  else
+    analysisResult.ast;
+
+  val formatted: String = StrategoUtil.toString(term);
+  return new CommandOutput(ListView.of(CommandFeedbacks.showText(formatted, "Analyzed AST for '$key'", null)));
+}

@@ -1,0 +1,37 @@
+data CommandInput = foreign java mb.spoofax.core.language.command.CommandInput
+data CommandOutput = foreign java mb.spoofax.core.language.command.CommandOutput
+data ResourcePath = foreign java mb.resource.hierarchical.ResourcePath
+
+func TigerShowParsedAst(command: CommandInput<Args>) -> CommandOutput {
+  data Args = {
+    key: ResourceKey,
+    region: Region
+  }
+
+  val key = commands.args.key
+
+  val parseResult = parse(key);
+  val ast: IStrategoTerm? = getAstResult(parseResult);
+  if (ast == null)
+    fail "Cannot show desugared AST, parsed AST for '$key' is null";
+
+  val term = if (commands.args.region == null)
+    TermTracer.getSmallestTermEncompassingRegion(analysisResult.ast, commands.args.region)
+  else
+    analysisResult.ast;
+
+  val strategoRuntime = strategoRuntimeBuilder.buildFromPrototype(prototypeStrategoRuntime);
+  val strategyId = "pp-Tiger-string";
+  result: IStrategoTerm? = strategoRuntime.invoke(strategyId, term, new IOAgent());
+  if (result == null)
+    fail "Cannot show desugared AST, executing Stratego strategy '$strategyId' failed"
+
+  val formatted: String = StrategoUtil.toString(result);
+  return new CommandOutput(ListView.of(CommandFeedbacks.showText(formatted, "Pretty-printed text for '$key'", null)));
+}
+
+
+foreign data definition:
+@Nullable IStrategoTerm getAstResult(parseResult) {
+  return parseResult.getAst().orElse(null);
+}
