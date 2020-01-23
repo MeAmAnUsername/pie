@@ -6,12 +6,16 @@ import mb.pie.api.PieSession;
 import mb.pie.lang.test.util.PieRunner;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
-class addStrNullableIntValueTestGenTest {
+class addListElemTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new TaskDefsModule_addStrNullableIntValueTestGen(), main_addStrNullableIntValueTestGen.class, "String + Nullable Int: 45");
+        ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(1, 2, 3));
+        assertTaskOutputEquals(new test_binary_add_addListElem.TaskDefsModule_test_binary_add_addListElem(), test_binary_add_addListElem.main_addListElem.class, expected);
     }
 }

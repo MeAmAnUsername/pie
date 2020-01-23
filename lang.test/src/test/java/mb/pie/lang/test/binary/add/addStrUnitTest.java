@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
-class addStrTupleTestGenTest {
+class addStrUnitTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new TaskDefsModule_addStrTupleTestGen(), main_addStrTupleTestGen.class, "String + Tuple: (1, true)");
+        assertTaskOutputEquals(new test_binary_add_addStrUnit.TaskDefsModule_test_binary_add_addStrUnit(), test_binary_add_addStrUnit.main_addStrUnit.class, "String + unit: None()");
     }
 }

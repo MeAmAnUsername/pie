@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
-class addPathStrTestGenTest {
+class addPathPathRelativeRelativeTest {
     @Test void test() throws ExecException {
-        FSPath expected = new FSPath("/path/to/foo/bar");
-        assertTaskOutputEquals(new TaskDefsModule_addPathStrTestGen(), main_addPathStrTestGen.class, expected);
+        FSPath expected = new FSPath("./path/to/./foo");
+        assertTaskOutputEquals(new test_binary_add_addPathPathRelativeRelative.TaskDefsModule_test_binary_add_addPathPathRelativeRelative(), test_binary_add_addPathPathRelativeRelative.main_addPathPathRelativeRelative.class, expected);
     }
 }

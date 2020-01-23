@@ -1,3 +1,5 @@
+module test.unary.toNullableVar;
+
 package mb.pie.lang.test.unary;
 
 func main_toNullableVar() -> int? = {

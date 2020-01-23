@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
-class addStrIntTestGenTest {
+class addStrNullableIntValueTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new TaskDefsModule_addStrIntTestGen(), main_addStrIntTestGen.class, "String + int: 67");
+        assertTaskOutputEquals(new test_binary_add_addStrNullableIntValue.TaskDefsModule_test_binary_add_addStrNullableIntValue(), test_binary_add_addStrNullableIntValue.main_addStrNullableIntValue.class, "String + Nullable Int: 45");
     }
 }

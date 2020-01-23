@@ -1,3 +1,5 @@
+module test.binary.neq.neqDataEqual;
+
 package mb.pie.lang.test.binary.neq;
 
 // Note: Sign only compares the sign of the numbers to determine Equality

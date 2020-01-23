@@ -1,5 +1,7 @@
+module test.binary.add.addStrStr;
+
 package mb.pie.lang.test.binary.add;
 
-func main_addStrStrTestGen() -> string = {
+func main_addStrStr() -> string = {
   "Hello there\n" + "General Kenobi"
 }

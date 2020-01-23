@@ -1,5 +1,7 @@
+module test.binary.add.addStrInt;
+
 package mb.pie.lang.test.binary.add;
 
-func main_addStrIntTestGen() -> string = {
+func main_addStrInt() -> string = {
   "String + int: " + 67
 }

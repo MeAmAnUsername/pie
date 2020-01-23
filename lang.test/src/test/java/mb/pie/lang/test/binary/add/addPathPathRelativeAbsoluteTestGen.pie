@@ -1,5 +1,7 @@
+module test.binary.add.addPathPathRelativeAbsolute;
+
 package mb.pie.lang.test.binary.add;
 
-func main_addPathPathRelativeAbsoluteTestGen() -> path = {
+func main_addPathPathRelativeAbsolute() -> path = {
   ./path/to + /foo
 }

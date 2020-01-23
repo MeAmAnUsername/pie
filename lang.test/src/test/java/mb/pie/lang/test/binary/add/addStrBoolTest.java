@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
-class addStrStrTestGenTest {
+class addStrBoolTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new TaskDefsModule_addStrStrTestGen(), main_addStrStrTestGen.class, "Hello there\nGeneral Kenobi");
+        assertTaskOutputEquals(new test_binary_add_addStrBool.TaskDefsModule_test_binary_add_addStrBool(), test_binary_add_addStrBool.main_addStrBool.class, "String + bool: true");
     }
 }

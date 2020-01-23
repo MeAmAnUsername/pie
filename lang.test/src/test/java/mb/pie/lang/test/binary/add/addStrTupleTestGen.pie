@@ -1,5 +1,7 @@
+module test.binary.add.addStrTuple;
+
 package mb.pie.lang.test.binary.add;
 
-func main_addStrTupleTestGen() -> string = {
+func main_addStrTuple() -> string = {
   "String + Tuple: " + (1, true)
 }

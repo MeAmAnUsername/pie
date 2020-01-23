@@ -7,6 +7,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class neqTupleEqualTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new TaskDefsModule_neqTupleEqualTestGen(), main_neqTupleEqual.class, new Boolean(false));
+        assertTaskOutputEquals(new test_binary_neq_neqTupleEqual.TaskDefsModule_test_binary_neq_neqTupleEqual(), test_binary_neq_neqTupleEqual.main_neqTupleEqual.class, new Boolean(false));
     }
 }

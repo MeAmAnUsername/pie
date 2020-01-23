@@ -1,3 +1,5 @@
+module test.binary.lor.lorTrueFalse;
+
 package mb.pie.lang.test.binary.lor;
 
 func main_lorTrueFalse() -> bool = {

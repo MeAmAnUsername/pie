@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class TwoFuncRecursiveTest {
     @Test @Timeout(5) void test() throws ExecException {
         assertThrows(ValidationException.class, () ->
-            assertTaskOutputEquals(new TaskDefsModule_twoFuncRecursiveTestGen(), main_twoFuncRecursive.class, None.instance)
+            assertTaskOutputEquals(new test_funcDef_twoFuncRecursive.TaskDefsModule_test_funcDef_twoFuncRecursive(), test_funcDef_twoFuncRecursive.main_twoFuncRecursive.class, None.instance)
         );
     }
 }

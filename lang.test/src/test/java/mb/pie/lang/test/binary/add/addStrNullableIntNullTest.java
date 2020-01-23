@@ -4,18 +4,14 @@ import mb.pie.api.ExecException;
 import mb.pie.api.None;
 import mb.pie.api.PieSession;
 import mb.pie.lang.test.util.PieRunner;
-import mb.resource.fs.FSPath;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
-class addPathPathAbsoluteAbsoluteTestGenTest {
+class addStrNullableIntNullTest {
     @Test void test() throws ExecException {
-        FSPath expected = new FSPath("/path/to/foo");
-        assertThrows(ExecException.class, () -> {
-            assertTaskOutputEquals(new TaskDefsModule_addPathPathAbsoluteAbsoluteTestGen(), main_addPathPathAbsoluteAbsoluteTestGen.class, expected);
-        });
+        assertTaskOutputEquals(new test_binary_add_addStrNullableIntNull.TaskDefsModule_test_binary_add_addStrNullableIntNull(), test_binary_add_addStrNullableIntNull.main_addStrNullableIntNull.class, "String + Nullable Int: null");
     }
 }

@@ -1,3 +1,5 @@
+module test.binary.neq.neqListDifferentElements;
+
 package mb.pie.lang.test.binary.neq;
 
 func main_neqListDifferentElements() -> bool = {

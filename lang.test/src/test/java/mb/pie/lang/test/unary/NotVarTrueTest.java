@@ -7,6 +7,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class NotVarTrueTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new TaskDefsModule_notVarTrueTestGen(), main_notVarTrue.class, new Boolean(false));
+        assertTaskOutputEquals(new test_unary_notVarTrue.TaskDefsModule_test_unary_notVarTrue(), test_unary_notVarTrue.main_notVarTrue.class, new Boolean(false));
     }
 }

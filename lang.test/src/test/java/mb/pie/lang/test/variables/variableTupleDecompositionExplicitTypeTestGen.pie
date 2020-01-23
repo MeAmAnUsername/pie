@@ -1,3 +1,5 @@
+module test.variables.variableTupleDecompositionExplicitType;
+
 package mb.pie.lang.test.variables;
 
 func main_variableTupleDecompositionExplicitType() -> (string, int) = {

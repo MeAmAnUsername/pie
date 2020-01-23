@@ -7,6 +7,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class eqListEqualEmptyTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new TaskDefsModule_eqListEqualEmptyTestGen(), main_eqListEqualEmpty.class, new Boolean(true));
+        assertTaskOutputEquals(new test_binary_eq_eqListEqualEmpty.TaskDefsModule_test_binary_eq_eqListEqualEmpty(), test_binary_eq_eqListEqualEmpty.main_eqListEqualEmpty.class, new Boolean(true));
     }
 }

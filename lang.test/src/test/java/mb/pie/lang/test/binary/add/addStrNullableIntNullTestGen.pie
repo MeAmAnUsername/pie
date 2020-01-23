@@ -1,6 +1,8 @@
+module test.binary.add.addStrNullableIntNull;
+
 package mb.pie.lang.test.binary.add;
 
-func main_addStrNullableIntNullTestGen() -> string = {
+func main_addStrNullableIntNull() -> string = {
   val x: int? = null;
   "String + Nullable Int: " + x
 }
