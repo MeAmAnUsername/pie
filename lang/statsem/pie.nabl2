@@ -63,9 +63,11 @@ rules // Init
 rules // Program
 
   [[ Program(package, defs) ^ (s_root) ]] :=
-    Map1 [[ defs ^ (s_root) ]],
-    distinct/name D(s_root)/Type | error "Duplicate types" @NAMES,
-    distinct/name D(s_root)/Func | error "Duplicate functions" @NAMES.
+    new s_file,
+    s_file -P-> s_root,
+    Map1 [[ defs ^ (s_file) ]],
+    distinct/name D(s_file)/Type | error "Duplicate types" @NAMES,
+    distinct/name D(s_file)/Func | error "Duplicate functions" @NAMES.
 
 rules // None
 
