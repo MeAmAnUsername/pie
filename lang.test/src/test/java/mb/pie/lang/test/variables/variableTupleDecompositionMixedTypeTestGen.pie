@@ -1,3 +1,5 @@
+module test.variables.variableTupleDecompositionMixedType;
+
 package mb.pie.lang.test.variables;
 
 func main_variableTupleDecompositionMixedType() -> (bool, string) = {

@@ -1,3 +1,5 @@
+module test.binary.add.addPathStr;
+
 package mb.pie.lang.test.binary.add;
 
 func main_addPathStrTestGen() -> path = {

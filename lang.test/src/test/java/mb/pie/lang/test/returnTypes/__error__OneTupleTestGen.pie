@@ -1,3 +1,5 @@
+module test.returnTypes.__error__OneTuple;
+
 package mb.pie.lang.test.returnTypes;
 
 // problem: can declare a return type of a tuple with a single element but

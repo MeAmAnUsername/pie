@@ -17,9 +17,12 @@ context-free start-symbols
 context-free syntax
 
   Start.Program =
-  <<Package>
+  <<Module>
+  <Package>
   
   <{Def "\n"}*>>
+  
+  Module.Module = <module <{ID "."}+>;>
   
   Package.Package = <package <{ID "."}+>;>
   

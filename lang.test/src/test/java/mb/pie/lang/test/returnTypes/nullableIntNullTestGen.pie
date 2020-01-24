@@ -1,3 +1,5 @@
+module test.returnTypes.nullableIntNull;
+
 package mb.pie.lang.test.returnTypes;
 
 func main_nullableIntNull() -> int? = {

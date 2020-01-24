@@ -1,3 +1,5 @@
+module test.binary.add.addListElem;
+
 package mb.pie.lang.test.binary.add;
 
 func main_addListElemTestGen() -> int* = {

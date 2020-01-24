@@ -15,22 +15,22 @@ signature
     well-formedness P*.I*
 
   constructors
-  
+
     FuncTy : list(Type) * Type -> Type
     TopTy  : Type
     NullTy : Type
-    
+
     JavaTypeKind : TypeKind
-    
+
     JavaForeignFuncKind   : FuncKind
     PieForeignFuncKind : FuncKind
     PieFuncKind     : FuncKind
-    
+
     LocalVarKind : VarKind
     InputVarKind : VarKind
 
   functions
-  
+
     addType : (Type * Type) -> Type {
       (IntTy()  , IntTy()  ) -> IntTy(),
       (StrTy()  , _        ) -> StrTy(),
@@ -45,7 +45,7 @@ signature
       (StrTy()    , occ_def_str, occ_def_path) -> occ_def_str,
       (PathTy()   , occ_def_str, occ_def_path) -> occ_def_path
     }
-    
+
 rules // Init
 
   init ^ (s_root) :=
@@ -62,9 +62,10 @@ rules // Init
 
 rules // Program
 
-  [[ Program(package, defs) ^ (s_root) ]] :=
+  [[ Program(module, package, defs) ^ (s_root) ]] :=
     new s_file,
     s_file -P-> s_root,
+    // todo: add module declaration
     Map1 [[ defs ^ (s_file) ]],
     distinct/name D(s_file)/Type | error "Duplicate types" @NAMES,
     distinct/name D(s_file)/Func | error "Duplicate functions" @NAMES.
@@ -72,4 +73,3 @@ rules // Program
 rules // None
 
   [[ None() ^ (s) ]] := true.
-  

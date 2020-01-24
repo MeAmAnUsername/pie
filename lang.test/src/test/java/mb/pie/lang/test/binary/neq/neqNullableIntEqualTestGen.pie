@@ -1,3 +1,5 @@
+module test.binary.neq.neqNullableIntEqual;
+
 package mb.pie.lang.test.binary.neq;
 
 func main_neqNullableIntEqual() -> bool = {

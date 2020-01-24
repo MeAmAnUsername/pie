@@ -1,3 +1,5 @@
+module test.returnTypes.dataTyNullableForeignJava;
+
 package mb.pie.lang.test.returnTypes;
 
 data Foo = foreign java mb.pie.lang.test.returnTypes.Foo {}

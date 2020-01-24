@@ -1,3 +1,5 @@
+module test.binary.eq.eqTupleDifferent;
+
 package mb.pie.lang.test.binary.eq;
 
 func main_eqTupleDifferent() -> bool = {

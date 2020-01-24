@@ -1,3 +1,5 @@
+module test.binary.add.addStrData;
+
 package mb.pie.lang.test.binary.add;
 
 data Sign = foreign java mb.pie.lang.test.binary.Sign {}

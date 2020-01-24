@@ -1,3 +1,5 @@
+module test.binary.add.addStrBool;
+
 package mb.pie.lang.test.binary.add;
 
 func main_addStrBoolTestGen() -> string = {

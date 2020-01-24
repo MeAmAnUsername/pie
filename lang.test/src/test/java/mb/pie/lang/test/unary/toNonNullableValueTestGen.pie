@@ -1,3 +1,5 @@
+module test.unary.toNonNullableValue;
+
 package mb.pie.lang.test.unary;
 
 func main_toNonNullableValue() -> string = {

@@ -1,3 +1,5 @@
+module test.returnTypes.listStringTwo;
+
 package mb.pie.lang.test.returnTypes;
 
 func main_listStringTwo() -> string* = {

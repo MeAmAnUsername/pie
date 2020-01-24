@@ -1,3 +1,5 @@
+module test.variables.variableImplicitType;
+
 package mb.pie.lang.test.variables;
 
 func main_variableImplicitType() -> int = {

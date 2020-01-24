@@ -1,3 +1,5 @@
+module test.binary.neq.neqTupleEqual;
+
 package mb.pie.lang.test.binary.neq;
 
 func main_neqTupleEqual() -> bool = {
