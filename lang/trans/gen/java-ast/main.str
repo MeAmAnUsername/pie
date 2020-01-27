@@ -15,6 +15,7 @@ imports
   signatures/java/lexical/-
   signatures/java/types/-
   signatures/java/interfaces/-
+  signatures/java/statements/-
 
   pp
 
