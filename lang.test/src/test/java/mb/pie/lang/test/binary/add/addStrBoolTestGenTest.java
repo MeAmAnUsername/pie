@@ -12,6 +12,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class addStrBoolTestGenTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new TaskDefsModule_addStrBoolTestGen(), main_addStrBoolTestGen.class, "String + bool: true");
+        assertTaskOutputEquals(new addStrBoolTestGen.TaskDefsModule_addStrBoolTestGen(), addStrBoolTestGen.main_addStrBoolTestGen.class, "String + bool: true");
     }
 }

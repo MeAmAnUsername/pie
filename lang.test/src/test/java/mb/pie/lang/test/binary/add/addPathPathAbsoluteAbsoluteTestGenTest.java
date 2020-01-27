@@ -15,7 +15,7 @@ class addPathPathAbsoluteAbsoluteTestGenTest {
     @Test void test() throws ExecException {
         FSPath expected = new FSPath("/path/to/foo");
         assertThrows(ExecException.class, () -> {
-            assertTaskOutputEquals(new TaskDefsModule_addPathPathAbsoluteAbsoluteTestGen(), main_addPathPathAbsoluteAbsoluteTestGen.class, expected);
+            assertTaskOutputEquals(new addPathPathAbsoluteAbsoluteTestGen.TaskDefsModule_addPathPathAbsoluteAbsoluteTestGen(), addPathPathAbsoluteAbsoluteTestGen.main_addPathPathAbsoluteAbsoluteTestGen.class, expected);
         });
     }
 }

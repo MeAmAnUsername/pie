@@ -12,6 +12,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class lorFalseTrueTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new TaskDefsModule_lorFalseTrueTestGen(), main_lorFalseTrue.class, new Boolean(true));
+        assertTaskOutputEquals(new lorFalseTrueTestGen.TaskDefsModule_lorFalseTrueTestGen(), lorFalseTrueTestGen.main_lorFalseTrue.class, new Boolean(true));
     }
 }

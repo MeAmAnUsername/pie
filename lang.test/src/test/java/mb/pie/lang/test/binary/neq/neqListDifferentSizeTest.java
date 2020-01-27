@@ -7,6 +7,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class neqListDifferentSizeTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new TaskDefsModule_neqListDifferentSizeTestGen(), main_neqListDifferentSize.class, new Boolean(true));
+        assertTaskOutputEquals(new neqListDifferentSizeTestGen.TaskDefsModule_neqListDifferentSizeTestGen(), neqListDifferentSizeTestGen.main_neqListDifferentSize.class, new Boolean(true));
     }
 }

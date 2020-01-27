@@ -12,6 +12,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class addStrUnitTestGenTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new TaskDefsModule_addStrUnitTestGen(), main_addStrUnitTestGen.class, "String + unit: None()");
+        assertTaskOutputEquals(new addStrUnitTestGen.TaskDefsModule_addStrUnitTestGen(), addStrUnitTestGen.main_addStrUnitTestGen.class, "String + unit: None()");
     }
 }

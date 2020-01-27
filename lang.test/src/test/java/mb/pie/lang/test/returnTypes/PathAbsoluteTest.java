@@ -8,6 +8,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class PathAbsoluteTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new TaskDefsModule_pathAbsoluteTestGen(), main_pathAbsolute.class, new FSPath("/foo/bar"));
+        assertTaskOutputEquals(new pathAbsoluteTestGen.TaskDefsModule_pathAbsoluteTestGen(), pathAbsoluteTestGen.main_pathAbsolute.class, new FSPath("/foo/bar"));
     }
 }

@@ -12,6 +12,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class addStrDataTestGenTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new TaskDefsModule_addStrDataTestGen(), main_addStrDataTestGen.class, "String + Sign (foreign data type): Sign with value 7");
+        assertTaskOutputEquals(new addStrDataTestGen.TaskDefsModule_addStrDataTestGen(), addStrDataTestGen.main_addStrDataTestGen.class, "String + Sign (foreign data type): Sign with value 7");
     }
 }

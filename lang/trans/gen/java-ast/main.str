@@ -59,22 +59,30 @@ $[// This file was generated from Pie source file [pieFile].pie.
         , <map(p2j-ast-wrap-string-with-id)> package
         ))
       , imports
-      , <concat> [
-          classes
-        , [ ClassDeclaration(
-              []
-            , Id($[TaskDefsModule_[<pie-sanitize-class-id> pieFile]])
-            , None()
-            , Some(SuperClass(ClassType([], Id("TaskDefsModule"), None())))
-            , None()
-            , [ MethodDecl(
-                  [MarkerAnno(TypeName(Id("Override"))), Protected()]
-                , MethodHeader(Void(), Id("bindTaskDefs"), NoParams(), [], None())
-                , Block(bindings)
+      , [ ClassDeclaration(
+            [Public()]
+          , Id(<pie-sanitize-class-id> pieFile)
+          , None()
+          , None()
+          , None()
+          , <concat> [
+              classes
+            , [ ClassDeclaration(
+                  [Public(), Static()]
+                , Id($[TaskDefsModule_[<pie-sanitize-class-id> pieFile]])
+                , None()
+                , Some(SuperClass(ClassType([], Id("TaskDefsModule"), None())))
+                , None()
+                , [ MethodDecl(
+                      [MarkerAnno(TypeName(Id("Override"))), Protected()]
+                    , MethodHeader(Void(), Id("bindTaskDefs"), NoParams(), [], None())
+                    , Block(bindings)
+                    )
+                  ]
                 )
               ]
-            )
-          ]
+            ]
+          )
         ]
       )
       // Note: meaning of this AST:
@@ -82,11 +90,13 @@ $[// This file was generated from Pie source file [pieFile].pie.
       //
       //   [imports]
       //
-      //   [classes]
+      //   class [<pie-sanitize-class-id> pieFile] {
+      //     [classes]
       //
-      //   class TaskDefsModule_[<pie-sanitize-class-id> pieFile] extends TaskDefsModule {
-      //     @Override
-      //     protected void bindTaskDefs() {
-      //       [bindings]
+      //     public static class TaskDefsModule_[<pie-sanitize-class-id> pieFile] extends TaskDefsModule {
+      //       @Override
+      //       protected void bindTaskDefs() {
+      //         [bindings]
+      //       }
       //     }
       //   }

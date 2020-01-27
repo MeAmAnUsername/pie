@@ -67,7 +67,7 @@ rules // PIE function definitions
     ; <add-import> "java.io.Serializable"
     with
       result := ClassDeclaration(
-          []
+          [Public(), Static()]
         , Id(className)
         , None()
         , None()
@@ -129,7 +129,7 @@ rules // PIE function definitions
           ]
         )
     // Note: meaning of this AST:
-    //   class [className] implements TaskDef<[inputType], [outputType]> {
+    //   public static class [className] implements TaskDef<[inputType], [outputType]> {
     //     private static final String _id = "[className]";
     //     [fields]
     //

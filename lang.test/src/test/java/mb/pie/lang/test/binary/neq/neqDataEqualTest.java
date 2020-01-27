@@ -7,6 +7,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class neqDataEqualTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new TaskDefsModule_neqDataEqualTestGen(), main_neqDataEqual.class, new Boolean(false));
+        assertTaskOutputEquals(new neqDataEqualTestGen.TaskDefsModule_neqDataEqualTestGen(), neqDataEqualTestGen.main_neqDataEqual.class, new Boolean(false));
     }
 }

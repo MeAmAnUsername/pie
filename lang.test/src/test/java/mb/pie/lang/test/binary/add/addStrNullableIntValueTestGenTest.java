@@ -12,6 +12,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class addStrNullableIntValueTestGenTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new TaskDefsModule_addStrNullableIntValueTestGen(), main_addStrNullableIntValueTestGen.class, "String + Nullable Int: 45");
+        assertTaskOutputEquals(new addStrNullableIntValueTestGen.TaskDefsModule_addStrNullableIntValueTestGen(), addStrNullableIntValueTestGen.main_addStrNullableIntValueTestGen.class, "String + Nullable Int: 45");
     }
 }
