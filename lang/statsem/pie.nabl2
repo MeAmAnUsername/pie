@@ -62,10 +62,10 @@ rules // Init
 
 rules // Program
 
-  [[ Program(module, package, defs) ^ (s_root) ]] :=
+  [[ Program(Module(moduleList), package, defs) ^ (s_root) ]] :=
     new s_file,
     s_file -P-> s_root,
-    // todo: add module declaration
+    modules [[ moduleList ^ (s_root, s_root) ]],
     Map1 [[ defs ^ (s_file) ]],
     distinct/name D(s_file)/Type | error "Duplicate types" @NAMES,
     distinct/name D(s_file)/Func | error "Duplicate functions" @NAMES.
@@ -73,3 +73,14 @@ rules // Program
 rules // None
 
   [[ None() ^ (s) ]] := true.
+
+rules // Module scope generation
+
+  modules [[ [first|rest] ^ (s, s_root) ]] :=
+    new s_sub_module,
+    Mod{first} <- s,
+    Mod{first} =I=> s_sub_module,
+    modules [[ rest ^ (s_sub_module, s_root) ]].
+
+  modules [[ [] ^ (s, s_root) ]] :=
+    s -P-> s_root. // s can resolve things from the root module
