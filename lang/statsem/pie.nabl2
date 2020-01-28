@@ -62,11 +62,12 @@ rules // Init
 
 rules // Program
 
-  [[ Program(Module(moduleList), package, defs) ^ (s_root) ]] :=
+  [[ Program(Module(moduleList), package, imports, defs) ^ (s_root) ]] :=
     new s_file,
     s_file -P-> s_root,
     modules [[ moduleList ^ (s_root, s_root) ]],
     Map1 [[ defs ^ (s_file) ]],
+    // todo: imports
     distinct/name D(s_file)/Type | error "Duplicate types" @NAMES,
     distinct/name D(s_file)/Func | error "Duplicate functions" @NAMES.
 

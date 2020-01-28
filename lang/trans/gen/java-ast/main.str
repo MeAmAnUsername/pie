@@ -43,7 +43,7 @@ $[// This file was generated from Pie source file [pieFile].pie.
 ]
 
   p2j-ast(|pieFile):
-    Program(Module(mod), Package(package), defs) -> result
+    Program(Module(mod), Package(package), imps, defs) -> result
     with
     {| AstAnalysis, ModuleBindings, JavaImports:
       <pie-set-ast-analysis> defs
