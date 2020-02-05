@@ -1,13 +1,7 @@
-data CommandInput = foreign java mb.spoofax.core.language.command.CommandInput
 data CommandOutput = foreign java mb.spoofax.core.language.command.CommandOutput
 data ResourcePath = foreign java mb.resource.hierarchical.ResourcePath
 
-func TigerCompileDirectory(command: CommandInput<Args>) -> CommandOutput = {
-  data Args = {
-    dir: ResourcePath
-  }
-
-  val dir = command.args.dir;
+func TigerCompileDirectory(dir: ResourcePath) -> CommandOutput = {
   val stringList = [{
     val defnames: String? = listDefNames(file.getKey());
     if (defnames != null) "$defnames\n" else "[]\n"

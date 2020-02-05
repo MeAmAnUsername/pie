@@ -1,23 +1,15 @@
-data CommandInput = foreign java mb.spoofax.core.language.command.CommandInput
 data CommandOutput = foreign java mb.spoofax.core.language.command.CommandOutput
 data ResourcePath = foreign java mb.resource.hierarchical.ResourcePath
 
-func TigerShowAnalyzedAst(command: CommandInput<Args>) -> CommandOutput {
-  data Args = {
-    key: ResourceKey,
-    region: Region
-  }
-
-  val key = commands.args.key
-
+func TigerShowAnalyzedAst(key: resourceKey, region: Region) -> CommandOutput {
   val analysisResult: ConstraintAnalyzer.SingleFileResult? = analyze(key);
   if (analysisResult == null)
     fail "Cannot show analyzed AST, analysis result for '$key' is null";
   if (analysisResult.ast == null)
     fail "Cannot show analyzed AST, analyzed AST for '$key' is null";
 
-  val term = if (commands.args.region == null)
-    TermTracer.getSmallestTermEncompassingRegion(analysisResult.ast, commands.args.region)
+  val term = if (region == null)
+    TermTracer.getSmallestTermEncompassingRegion(analysisResult.ast, region)
   else
     analysisResult.ast;
 

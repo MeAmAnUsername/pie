@@ -1,22 +1,14 @@
-data CommandInput = foreign java mb.spoofax.core.language.command.CommandInput
 data CommandOutput = foreign java mb.spoofax.core.language.command.CommandOutput
 data ResourcePath = foreign java mb.resource.hierarchical.ResourcePath
 
-func TigerShowParsedAst(command: CommandInput<Args>) -> CommandOutput {
-  data Args = {
-    key: ResourceKey,
-    region: Region
-  }
-
-  val key = commands.args.key
-
+func TigerShowParsedAst(key: resourceKey, region: Region) -> CommandOutput {
   val parseResult = parse(key);
   val ast: IStrategoTerm? = getAstResult(parseResult);
   if (ast == null)
     fail "Cannot show desugared AST, parsed AST for '$key' is null";
 
-  val term = if (commands.args.region == null)
-    TermTracer.getSmallestTermEncompassingRegion(analysisResult.ast, commands.args.region)
+  val term = if (region == null)
+    TermTracer.getSmallestTermEncompassingRegion(analysisResult.ast, region)
   else
     analysisResult.ast;
 
