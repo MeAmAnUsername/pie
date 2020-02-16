@@ -42,6 +42,7 @@ signature
 
     typeToOcc : (Type * Occurrence * Occurrence) -> Occurrence {
       (DataTy(occ), occ_def_str, occ_def_path) -> occ,
+    //  (f@FuncTy(tys_in, ty_out), occ_def_str, occ_def_path) -> f,
       (StrTy()    , occ_def_str, occ_def_path) -> occ_def_str,
       (PathTy()   , occ_def_str, occ_def_path) -> occ_def_path
     }
@@ -66,8 +67,8 @@ rules // Program
     new s_file,
     s_file -P-> s_root,
     modules [[ moduleList ^ (s_root, s_root) ]],
+    Map1(import)[[ imports ^ (s_file) ]],
     Map1 [[ defs ^ (s_file) ]],
-    // todo: imports
     distinct/name D(s_file)/Type | error "Duplicate types" @NAMES,
     distinct/name D(s_file)/Func | error "Duplicate functions" @NAMES.
 
@@ -85,3 +86,20 @@ rules // Module scope generation
 
   modules [[ [] ^ (s, s_root) ]] :=
     s -P-> s_root. // s can resolve things from the root module
+
+rules // Import resolution & declaration
+
+  import [[ Import([first|[second|rest]]) ^ (s_cur) ]] :=
+    new s_next,
+    Mod{first} -> s_cur,
+//    Mod{first} |-> d,
+    Mod{first} <=I= s_next,
+    full_rest == [second|rest],
+    import [[ full_rest ^ (s_next) ]].
+
+  import [[ Import([last|[]]) ^ (s) ]] :=
+    Mod{last} -> s_cur,
+    Mod{last} |-> d.
+
+  import [[ Import([]) ^ (s) ]] := false | error "Tried to resolve an empty qualified call".
+  
