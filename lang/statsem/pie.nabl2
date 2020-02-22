@@ -66,11 +66,12 @@ rules // Program
   [[ Program(Module(moduleList), package, imports, defs) ^ (s_root) ]] :=
     new s_file,
     s_file -P-> s_root,
-    modules [[ moduleList ^ (s_root, s_root) ]],
-    Map1(import)[[ imports ^ (s_file) ]],
+    modules [[ moduleList ^ (s_root, s_file) ]],
+    Map1(import)[[ imports ^ (s_root, s_file) ]],
     Map1 [[ defs ^ (s_file) ]],
     distinct/name D(s_file)/Type | error "Duplicate types" @NAMES,
-    distinct/name D(s_file)/Func | error "Duplicate functions" @NAMES.
+    distinct/name D(s_file)/Func | error "Duplicate functions" @NAMES,
+    distinct/name D(s_file)/Mod  | error "Duplicate imports" @NAMES.
 
 rules // None
 
@@ -78,28 +79,29 @@ rules // None
 
 rules // Module scope generation
 
-  modules [[ [first|rest] ^ (s, s_root) ]] :=
+  modules [[ [first|rest] ^ (s, s_file) ]] :=
     new s_sub_module,
     Mod{first} <- s,
     Mod{first} =I=> s_sub_module,
-    modules [[ rest ^ (s_sub_module, s_root) ]].
+    modules [[ rest ^ (s_sub_module, s_file) ]].
 
-  modules [[ [] ^ (s, s_root) ]] :=
-    s -P-> s_root. // s can resolve things from the root module
+  modules [[ [] ^ (s, s_file) ]] :=
+    s -I-> s_file. // s can import things from the file
 
 rules // Import resolution & declaration
 
-  import [[ Import([first|[second|rest]]) ^ (s_cur) ]] :=
+  import [[ Import(importList) ^ (s_root, s_file) ]] :=
+    import [[ importList ^ (s_root, s_file) ]].
+
+  import [[ [first|[second|rest]] ^ (s_cur, s_file) ]] :=
     new s_next,
     Mod{first} -> s_cur,
-//    Mod{first} |-> d,
     Mod{first} <=I= s_next,
     full_rest == [second|rest],
-    import [[ full_rest ^ (s_next) ]].
+    import [[ full_rest ^ (s_next, s_file) ]].
 
-  import [[ Import([last|[]]) ^ (s) ]] :=
-    Mod{last} -> s_cur,
-    Mod{last} |-> d.
+  import [[ [last|[]] ^ (s, s_file) ]] :=
+    Mod{last} -> s,
+    Mod{last} <- s_file.
 
-  import [[ Import([]) ^ (s) ]] := false | error "Tried to resolve an empty qualified call".
-  
+  import [[ [] ^ (s, s_file) ]] := false | error "Tried to resolve an empty qualified call".
