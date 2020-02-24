@@ -100,7 +100,6 @@ rules // Import resolution & declaration
     import [[ full_rest ^ (s_next, s_file) ]].
 
   import [[ [last|[]] ^ (s, s_file) ]] :=
-    Mod{last} -> s,
-    Mod{last} <- s_file.
+    s_file -P-> s.
 
   import [[ [] ^ (s, s_file) ]] := false | error "Tried to resolve an empty qualified call".
