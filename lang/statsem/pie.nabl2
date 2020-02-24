@@ -93,11 +93,10 @@ rules // Import resolution & declaration
   import [[ Import(importList) ^ (s_root, s_file) ]] :=
     import [[ importList ^ (s_root, s_file) ]].
 
-  import [[ [first|[second|rest]] ^ (s_cur, s_file) ]] :=
+  import [[ [first|full_rest@[second|rest]] ^ (s_cur, s_file) ]] :=
     new s_next,
     Mod{first} -> s_cur,
     Mod{first} <=I= s_next,
-    full_rest == [second|rest],
     import [[ full_rest ^ (s_next, s_file) ]].
 
   import [[ [last|[]] ^ (s, s_file) ]] :=
