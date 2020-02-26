@@ -525,6 +525,53 @@ rules // Qualified function calls
       ]
     ; result                      := (stmts, callResultName)
 
+  p2j-ast-exp:
+    c@ImportCall(moduleList, funcId, argExps) -> result
+    where
+      debug(|"Check ImportCall foreign java method; ");
+      JavaForeignFuncKind() := <pie-ast-ref-prop(|"Func", "kind")> funcId
+      ; debug(|"Check succeeded; ")
+    with
+      debug(|"Start ImportCall foreign java method; ");
+      javaClassId                 := <pie-ast-ref-prop(|"Func", "javaClassId")> funcId
+    ; ambiguousNameJavaClassId    := <java-qualifiedClass-to-ambiguousName> javaClassId
+    ; javaMethodId                := <pie-ast-ref-prop(|"Func", "javaMethodId")> funcId
+    ; (argExpsStmts, argExpsVals) := <unzip> <map(try-p2j-ast-exp)> argExps
+    ; callResultName              := <newname> "callResult"
+    ; ty                          := <p2j-ast-type-sig> <pie-type> c
+    ; stmts                       := <concat> [
+        <concat> argExpsStmts,
+        [ LocVarDeclStm(LocalVarDecl(
+            [Final()]
+          , <java-classType-to-unannType> ty
+          , [ VariableDeclInit(
+                VariableDecl(Id(callResultName))
+              , InvokeQExp(ExpressionName(ambiguousNameJavaClassId), None(), Id(javaMethodId), argExpsVals)
+              )
+            ]
+          ))
+        ]
+        // Note: meaning of this AST:
+        //       final [ty] [callResultName] = [javaClassId].[javaMethodId]([argExpsVals]);
+      ]
+    ; result                      := (stmts, callResultName)
+
+  p2j-ast-exp:
+    c@ImportCall(moduleList, funcId, argExps) -> result
+    where
+      PieForeignFuncKind() := <pie-ast-ref-prop(|"Func", "kind")> funcId
+    with
+      result := <todo>
+
+  p2j-ast-exp:
+    c@ImportCall(moduleList, funcId, argExps) -> result
+    where
+      PieFuncKind() := <pie-ast-ref-prop(|"Func", "kind")> funcId
+    with
+      result := <todo>
+
+  todo: _ -> 8
+
 rules // PIE function calls
 
   p2j-ast-exp:
