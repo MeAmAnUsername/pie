@@ -8,7 +8,7 @@ func TigerShowParsedAst(key: resourceKey, region: Region) -> CommandOutput {
     fail "Cannot show desugared AST, parsed AST for '$key' is null";
 
   val term = if (commands.args.region == null)
-    TermTracer.getSmallestTermEncompassingRegion(analysisResult.ast, commands.args.region)
+    TermTracer.getSmallestTermEncompassingRegion(analysisResult.ast, region)
   else
     analysisResult.ast;
 

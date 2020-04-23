@@ -10,7 +10,7 @@ func TigerCompileDirectory(dir: ResourcePath) -> CommandOutput = {
   val result = if (stringList is empty)
     "[\n]"
   else
-    join stringList with "[\n  ", "\n, ", "\n]"
+    "[\n  ${joinStringList(stringList, "\n, ")}\n]"
 
   val resultFile = dir + "_defnames.aterm"
 

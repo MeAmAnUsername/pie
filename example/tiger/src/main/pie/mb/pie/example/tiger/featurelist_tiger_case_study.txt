@@ -1,0 +1,49 @@
+Required features:
+- call instance method on arbitrary expression
+- call static method
+- call constructor
+- modules
+
+standard library
+- std or pie?
+  std.io
+  std.list
+- join list of strings
+  - tigerCompilerDirectory
+    func joinStringList(list: string*, seperator: string) -> string = foreign java <todo>
+    public static String joinStringList(ArrayList<String> list, String seperator) {
+      return list.stream().joining(seperator);
+    }
+- write string to file
+  - tigerAltCompileFile
+  - tigerCompilerDirectory
+    func writeString(file: path, str: string) -> unit = foreign java <todo>
+    public static None writeString(FSPath file, String str) {
+      Files.write(<todo: write file>);
+      return None.instance;
+    }
+
+
+Ambiguïteit tussen dynamic calls on arbitrary expression, static calls en qualified calls:
+- foo.bar(): pie module foo met func bar, java class foo met static method bar, local variabele foo met instance method bar?
+- foo.bar.baz():
+  - pie module foo met submodule bar met func baz: `module foo.bar; func baz() ...`
+  - class foo met nested class bar met static method baz: `class foo {public static class bar {public static void baz() {...}}}`
+  - class foo met field bar met instance method baz: `class foo {public static Bar bar = new Bar();}` - instance call on an arbitrary expression
+
+features met ambiguïteit:
+- dynamic call on local variable: supported
+- qualified call on pie module: supported
+- Qualified call on java class with static method: optional
+  - other option is to require a foreign function import: `func bar() -> unit = foreign java foo.bar`;
+
+Willen we support voor java field access in pie?
+- alternatief: vereis getter method
+- zo ja: ook support voor java nested classes?
+
+declaration dec: 
+dec.kind = [PieModule()|JavaForeignClassType()|]
+
+
+QualifyingExp = Exp
+QualifyingExp.Qualifier = ID
