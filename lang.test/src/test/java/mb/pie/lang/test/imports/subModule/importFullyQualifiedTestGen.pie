@@ -3,7 +3,7 @@ package mb.pie.lang.test.imports.subModule;
 
 import mb.pie.lang.test.imports.subModule.a.b.c;
 
-func main() -> unit = {
+func main_importFullyQualified() -> unit = {
   mb.pie.lang.test.imports.subModule.a.b.c.theFunction();
   unit
 }
