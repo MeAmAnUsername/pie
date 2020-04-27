@@ -12,6 +12,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class addStrPathTestGenTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new addStrPathTestGen.TaskDefsModule_addStrPathTestGen(), addStrPathTestGen.main_addStrPathTestGen.class, "String + path: java##file:///path/to/file");
+        assertTaskOutputEquals(new test_binary_add_addStrPath.TaskDefsModule_test_binary_add_addStrPath(), test_binary_add_addStrPath.main_addStrPath.class, "String + path: java##file:///path/to/file");
     }
 }

@@ -12,6 +12,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class addIntIntTestGenTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new addIntIntTestGen.TaskDefsModule_addIntIntTestGen(), addIntIntTestGen.main_addIntIntTestGen.class, 9);
+        assertTaskOutputEquals(new test_binary_add_addIntInt.TaskDefsModule_test_binary_add_addIntInt(), test_binary_add_addIntInt.main_addIntInt.class, 9);
     }
 }

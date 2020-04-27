@@ -7,6 +7,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class DataTyNullableForeignJavaTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new dataTyNullableForeignJavaTestGen.TaskDefsModule_dataTyNullableForeignJavaTestGen(), dataTyNullableForeignJavaTestGen.main_dataTyNullableForeignJava.class, null);
+        assertTaskOutputEquals(new test_returnTypes_dataTyNullableForeignJava.TaskDefsModule_test_returnTypes_dataTyNullableForeignJava(), test_returnTypes_dataTyNullableForeignJava.main_dataTyNullableForeignJava.class, null);
     }
 }

@@ -7,6 +7,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class IntTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new intTestGen.TaskDefsModule_intTestGen(), intTestGen.main_int.class, new Integer(6));
+        assertTaskOutputEquals(new test_returnTypes_int.TaskDefsModule_test_returnTypes_int(), test_returnTypes_int.main_int.class, new Integer(6));
     }
 }

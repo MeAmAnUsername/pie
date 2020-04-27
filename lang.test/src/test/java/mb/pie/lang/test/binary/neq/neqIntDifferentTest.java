@@ -7,6 +7,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class neqIntDifferentTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new neqIntDifferentTestGen.TaskDefsModule_neqIntDifferentTestGen(), neqIntDifferentTestGen.main_neqIntDifferent.class, new Boolean(true));
+        assertTaskOutputEquals(new test_binary_neq_neqIntDifferent.TaskDefsModule_test_binary_neq_neqIntDifferent(), test_binary_neq_neqIntDifferent.main_neqIntDifferent.class, new Boolean(true));
     }
 }

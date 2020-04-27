@@ -7,6 +7,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class eqListDifferentElementsTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new eqListDifferentElementsTestGen.TaskDefsModule_eqListDifferentElementsTestGen(), eqListDifferentElementsTestGen.main_eqListDifferentElements.class, new Boolean(false));
+        assertTaskOutputEquals(new test_binary_eq_eqListDifferentElements.TaskDefsModule_test_binary_eq_eqListDifferentElements(), test_binary_eq_eqListDifferentElements.main_eqListDifferentElements.class, new Boolean(false));
     }
 }

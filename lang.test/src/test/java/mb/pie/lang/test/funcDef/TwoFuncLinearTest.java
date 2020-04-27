@@ -8,6 +8,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class TwoFuncLinearTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new twoFuncLinearTestGen.TaskDefsModule_twoFuncLinearTestGen(), twoFuncLinearTestGen.main_twoFuncLinear.class, None.instance);
+        assertTaskOutputEquals(new test_funcDef_twoFuncLinear.TaskDefsModule_test_funcDef_twoFuncLinear(), test_funcDef_twoFuncLinear.main_twoFuncLinear.class, None.instance);
     }
 }

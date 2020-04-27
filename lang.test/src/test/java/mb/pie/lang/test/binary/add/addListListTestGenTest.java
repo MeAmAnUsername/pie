@@ -16,6 +16,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 class addListListTestGenTest {
     @Test void test() throws ExecException {
         ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-        assertTaskOutputEquals(new addListListTestGen.TaskDefsModule_addListListTestGen(), addListListTestGen.main_addListListTestGen.class, expected);
+        assertTaskOutputEquals(new test_binary_add_addListList.TaskDefsModule_test_binary_add_addListList(), test_binary_add_addListList.main_addListList.class, expected);
     }
 }

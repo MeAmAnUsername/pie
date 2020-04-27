@@ -12,6 +12,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class addStrTupleTestGenTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new addStrTupleTestGen.TaskDefsModule_addStrTupleTestGen(), addStrTupleTestGen.main_addStrTupleTestGen.class, "String + Tuple: (1, true)");
+        assertTaskOutputEquals(new test_binary_add_addStrTuple.TaskDefsModule_test_binary_add_addStrTuple(), test_binary_add_addStrTuple.main_addStrTuple.class, "String + Tuple: (1, true)");
     }
 }

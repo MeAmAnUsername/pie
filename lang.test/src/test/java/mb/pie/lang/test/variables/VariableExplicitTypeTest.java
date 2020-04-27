@@ -7,6 +7,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class VariableExplicitTypeTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new variableExplicitTypeTestGen.TaskDefsModule_variableExplicitTypeTestGen(), variableExplicitTypeTestGen.main_variableExplicitType.class, "Greg ate a fish");
+        assertTaskOutputEquals(new test_variables_variableExplicitType.TaskDefsModule_test_variables_variableExplicitType(), test_variables_variableExplicitType.main_variableExplicitType.class, "Greg ate a fish");
     }
 }

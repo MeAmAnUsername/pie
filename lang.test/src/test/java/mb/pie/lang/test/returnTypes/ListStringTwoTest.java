@@ -10,6 +10,6 @@ import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
 class ListStringTwoTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new listStringTwoTestGen.TaskDefsModule_listStringTwoTestGen(), listStringTwoTestGen.main_listStringTwo.class, new ArrayList<>(Arrays.asList("hello", "world")));
+        assertTaskOutputEquals(new test_returnTypes_listStringTwo.TaskDefsModule_test_returnTypes_listStringTwo(), test_returnTypes_listStringTwo.main_listStringTwo.class, new ArrayList<>(Arrays.asList("hello", "world")));
     }
 }
