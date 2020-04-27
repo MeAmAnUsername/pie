@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
-class addStrListTestGenTest {
+class addStrStrTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new test_binary_add_addStrList.TaskDefsModule_test_binary_add_addStrList(), test_binary_add_addStrList.main_addStrList.class, "String + list: [1, 2, 3]");
+        assertTaskOutputEquals(new test_binary_add_addStrStr.TaskDefsModule_test_binary_add_addStrStr(), test_binary_add_addStrStr.main_addStrStr.class, "Hello there\nGeneral Kenobi");
     }
 }

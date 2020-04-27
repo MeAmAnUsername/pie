@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
-class addPathPathAbsoluteAbsoluteTestGenTest {
+class addPathPathRelativeAbsoluteTest {
     @Test void test() throws ExecException {
         FSPath expected = new FSPath("/path/to/foo");
         assertThrows(ExecException.class, () -> {
-            assertTaskOutputEquals(new test_binary_add_addPathPathAbsoluteAbsolute.TaskDefsModule_test_binary_add_addPathPathAbsoluteAbsolute(), test_binary_add_addPathPathAbsoluteAbsolute.main_addPathPathAbsoluteAbsolute.class, expected);
+            assertTaskOutputEquals(new test_binary_add_addPathPathRelativeAbsolute.TaskDefsModule_test_binary_add_addPathPathRelativeAbsolute(), test_binary_add_addPathPathRelativeAbsolute.main_addPathPathRelativeAbsolute.class, expected);
         });
     }
 }

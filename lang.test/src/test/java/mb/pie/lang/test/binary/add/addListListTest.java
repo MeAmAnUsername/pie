@@ -4,16 +4,18 @@ import mb.pie.api.ExecException;
 import mb.pie.api.None;
 import mb.pie.api.PieSession;
 import mb.pie.lang.test.util.PieRunner;
-import mb.resource.fs.FSPath;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
-class addPathStrTestGenTest {
+class addListListTest {
     @Test void test() throws ExecException {
-        FSPath expected = new FSPath("/path/to/foo/bar");
-        assertTaskOutputEquals(new test_binary_add_addPathStr.TaskDefsModule_test_binary_add_addPathStr(), test_binary_add_addPathStr.main_addPathStr.class, expected);
+        ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        assertTaskOutputEquals(new test_binary_add_addListList.TaskDefsModule_test_binary_add_addListList(), test_binary_add_addListList.main_addListList.class, expected);
     }
 }

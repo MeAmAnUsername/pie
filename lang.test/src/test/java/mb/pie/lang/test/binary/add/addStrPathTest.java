@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import static mb.pie.lang.test.util.SimpleChecker.assertTaskOutputEquals;
 
-class addStrStrTestGenTest {
+class addStrPathTest {
     @Test void test() throws ExecException {
-        assertTaskOutputEquals(new test_binary_add_addStrStr.TaskDefsModule_test_binary_add_addStrStr(), test_binary_add_addStrStr.main_addStrStr.class, "Hello there\nGeneral Kenobi");
+        assertTaskOutputEquals(new test_binary_add_addStrPath.TaskDefsModule_test_binary_add_addStrPath(), test_binary_add_addStrPath.main_addStrPath.class, "String + path: java##file:///path/to/file");
     }
 }
