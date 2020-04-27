@@ -1,9 +1,9 @@
 module mb.pie.lang.test.imports.subModule.main;
 package mb.pie.lang.test.imports.subModule;
 
-import mb.pie.lang.test.imports.subModule.a.b.c;
+import mb.pie.lang.test.imports.subModule.a;
 
-func main_importFullModulePath() -> unit = {
-  c.theFunction();
+func main_importPartialModulePath() -> unit = {
+  a.b.c.theFunction();
   unit
 }
