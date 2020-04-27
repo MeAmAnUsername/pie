@@ -2,6 +2,6 @@ module test.binary.add.addStrUnit;
 
 package mb.pie.lang.test.binary.add;
 
-func main_addStrUnitTestGen() -> string = {
+func main_addStrUnit() -> string = {
   "String + unit: " + unit
 }

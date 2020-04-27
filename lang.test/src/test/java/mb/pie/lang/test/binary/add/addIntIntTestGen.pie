@@ -2,6 +2,6 @@ module test.binary.add.addIntInt;
 
 package mb.pie.lang.test.binary.add;
 
-func main_addIntIntTestGen() -> int = {
+func main_addIntInt() -> int = {
   5 + 4
 }

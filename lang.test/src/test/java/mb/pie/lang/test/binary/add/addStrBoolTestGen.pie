@@ -2,6 +2,6 @@ module test.binary.add.addStrBool;
 
 package mb.pie.lang.test.binary.add;
 
-func main_addStrBoolTestGen() -> string = {
+func main_addStrBool() -> string = {
   "String + bool: " + true
 }
