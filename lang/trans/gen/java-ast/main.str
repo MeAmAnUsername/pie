@@ -27,11 +27,8 @@ rules
     (pieAst, _, _, file, _) -> (filePath, result)
     with
       filename  := $[[<generate-classname> pieAst].java]
-    ; <debug(|"original filename: ")> file
     ; pieFile  := <base-filename> file
-    ; <debug(|"pieFile: ")> pieFile
     ; filePath := <string-replace(|pieFile, filename)> file
-    ; <debug(|"filePath: ")> filePath
     ; javaAst  := <p2j-ast(|pieFile)> pieAst
     ; <debug(|"Successfully transpiled file to Java: ")> file
     ; result   := <p2j-ast-to-filestring(|pieFile)> javaAst
@@ -43,7 +40,7 @@ rules
 
   p2j-ast-to-filestring(|pieFile):
     ast ->
-$[// This file was generated from Pie source file [pieFile].pie.
+$[// This file was generated from Pie source file [pieFile].
 [<pp-java-string> ast]
 // last cache update: 2020-01-09 13:52
 ]
