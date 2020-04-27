@@ -66,6 +66,9 @@ rules // Program
   [[ Program(Module(moduleList), package, imports, defs) ^ (s_root) ]] :=
     new s_file,
     s_file -P-> s_root,
+    modDecl == QualifiedModuleDeclaration{"modDecl"},
+    modDecl <- s_file,
+    modDecl.moduleList := moduleList !,
     modules [[ moduleList ^ (s_root, s_file) ]],
     Map1(import)[[ imports ^ (s_root, s_file) ]],
     Map1 [[ defs ^ (s_file) ]],
