@@ -1,0 +1,6 @@
+package mb.pie.lang.test.fail;
+
+func main() -> unit = {
+  val i = 6;
+  fail "failed: $i."
+}

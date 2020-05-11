@@ -1,0 +1,5 @@
+package mb.pie.lang.test.fail;
+
+func main() -> unit = {
+  fail "failure"
+}
