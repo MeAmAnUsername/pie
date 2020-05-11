@@ -1,0 +1,12 @@
+package mb.pie.lang.test.call.qcall;
+
+data Object = foreign java java.lang.Object {}
+data Sign : Object = foreign java mb.pie.lang.test.binary.Sign {
+  func equals(obj: Object) -> bool
+}
+func createSign(value: int) -> Sign = foreign java mb.pie.lang.test.binary.Sign#createSign
+
+func main() -> bool = {
+  val sign = createSign(0);
+  sign.equals(sign)
+}
