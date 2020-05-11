@@ -1,0 +1,5 @@
+package mb.pie.lang.test.controlFlow.ifElse;
+
+func main() -> string = {
+  if (true) "it was true" else "insanity"
+}

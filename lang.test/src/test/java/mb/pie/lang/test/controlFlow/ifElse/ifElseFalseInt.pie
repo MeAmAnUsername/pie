@@ -1,0 +1,5 @@
+package mb.pie.lang.test.controlFlow.ifElse;
+
+func main() -> int = {
+  if (false) 1 else -1
+}

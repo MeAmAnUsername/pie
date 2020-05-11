@@ -1,0 +1,6 @@
+package mb.pie.lang.test.controlFlow.ifElse;
+
+func main() -> string = {
+  val i = 4;
+  if (i == 4) "i = 4" else "i != 4"
+}
