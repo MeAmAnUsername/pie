@@ -1,6 +1,8 @@
 package mb.pie.lang.test.funcDef.oneFunc;
 
 import mb.pie.api.*;
+import mb.pie.dagger.PieComponent;
+import mb.pie.dagger.PieModule;
 import mb.pie.runtime.PieBuilderImpl;
 import org.junit.jupiter.api.Test;
 
@@ -9,8 +11,24 @@ import java.io.Serializable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class OneFuncTest {
-    @Test void test() throws Exception {
-        assertTaskOutputEquals(DaggeroneFuncComponent.create(), None.instance);
+    @Test
+    void test() throws Exception {
+        None input = None.instance;
+        None expectedOutput = None.instance;
+        Class<? extends PieComponent> componentClass = DaggeroneFuncComponent.class;
+
+//        Object builder = componentClass.getMethod("builder").invoke(null);
+//        builder.getClass().getMethod("pieModule", PieModule.class).invoke(builder, new PieModule(PieBuilderImpl::new));
+//        PieComponent component = (PieComponent) builder.getClass().getMethod("build").invoke(builder);
+
+        oneFuncComponent component = DaggeroneFuncComponent.builder().pieModule(new PieModule(PieBuilderImpl::new)).build();
+        Pie pie = component.getPie();
+        try (MixedSession session = pie.newSession()) {
+            final TaskDef<None, None> main = component.get();
+//            final TaskDef<None, None> main = (TaskDef<None, None>) component.getClass().getMethod("get").invoke(component);
+            final None actualOutput = session.require(main.createTask(input));
+            assertEquals(expectedOutput, actualOutput);
+        }
     }
 
     public static <O extends Serializable> O assertTaskOutputEquals(TaskDef<None, O> main, O expectedOutput)
