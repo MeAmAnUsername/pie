@@ -1,6 +1,0 @@
-module test.returnTypes.unitNoValue;
-
-package mb.pie.lang.test.returnTypes;
-
-func main_unitNoValue() -> unit = {
-}

@@ -1,7 +1,0 @@
-module test.returnTypes.string;
-
-package mb.pie.lang.test.returnTypes;
-
-func main_string() -> string = {
-  "Hello, world!"
-}

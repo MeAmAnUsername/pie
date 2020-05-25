@@ -1,7 +1,0 @@
-module test.returnTypes.tupleBoolString;
-
-package mb.pie.lang.test.returnTypes;
-
-func main_tupleBoolString() -> (bool, string) = {
-  (false, "hey")
-}

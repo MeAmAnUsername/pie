@@ -1,7 +1,0 @@
-module test.binary.neq.neqBoolDifferent;
-
-package mb.pie.lang.test.binary.neq;
-
-func main_neqBoolDifferent() -> bool = {
-  true != false
-}

@@ -1,7 +1,0 @@
-module test.binary.eq.eqStringDifferent;
-
-package mb.pie.lang.test.binary.eq;
-
-func main_eqStringDifferent() -> bool = {
-  "capitalized?" == "Capitalized?"
-}

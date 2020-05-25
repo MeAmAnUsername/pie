@@ -1,7 +1,0 @@
-module test.binary.neq.neqPathDifferent;
-
-package mb.pie.lang.test.binary.neq;
-
-func main_neqPathDifferent() -> bool = {
-  ./foo != /foo
-}

@@ -1,7 +1,0 @@
-module test.returnTypes.boolTrue;
-
-package mb.pie.lang.test.returnTypes;
-
-func main_boolTrue() -> bool = {
-  true
-}

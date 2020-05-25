@@ -1,7 +1,0 @@
-module test.returnTypes.unitExplicitValue;
-
-package mb.pie.lang.test.returnTypes;
-
-func main_unitExplicitValue() -> unit = {
-  unit
-}

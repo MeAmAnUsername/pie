@@ -1,8 +1,0 @@
-module test.unary.toNonNullableNull;
-
-package mb.pie.lang.test.unary;
-
-func main_toNonNullableNull() -> int = {
-  val foo: int? = null;
-  foo!
-}

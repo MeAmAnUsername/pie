@@ -1,7 +1,0 @@
-module test.unary.notFalse;
-
-package mb.pie.lang.test.unary;
-
-func main_notFalse() -> bool = {
-  !false
-}

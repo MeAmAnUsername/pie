@@ -1,7 +1,0 @@
-module test.binary.lor.lorTrueTrue;
-
-package mb.pie.lang.test.binary.lor;
-
-func main_lorTrueTrue() -> bool = {
-  true || true
-}

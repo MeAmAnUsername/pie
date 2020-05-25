@@ -1,7 +1,0 @@
-module test.unary.toNullable;
-
-package mb.pie.lang.test.unary;
-
-func main_toNullable() -> int?* = {
-  [6?] // use a list to force type errors if it is not cast
-}

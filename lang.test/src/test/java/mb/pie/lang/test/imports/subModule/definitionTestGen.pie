@@ -1,4 +1,0 @@
-module mb.pie.lang.test.imports.subModule.a.b.c;
-package mb.pie.lang.test.imports.subModule;
-
-func theFunction() -> unit = {}

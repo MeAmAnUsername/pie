@@ -1,7 +1,0 @@
-module test.returnTypes.nullableStringValue;
-
-package mb.pie.lang.test.returnTypes;
-
-func main_nullableStringValue() -> string? = {
-  "not null"
-}

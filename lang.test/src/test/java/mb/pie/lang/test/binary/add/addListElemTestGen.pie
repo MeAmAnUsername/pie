@@ -1,7 +1,0 @@
-module test.binary.add.addListElem;
-
-package mb.pie.lang.test.binary.add;
-
-func main_addListElem() -> int* = {
-  [1, 2] + 3
-}

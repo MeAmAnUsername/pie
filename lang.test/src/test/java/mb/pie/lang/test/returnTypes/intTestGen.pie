@@ -1,7 +1,0 @@
-module test.returnTypes.int;
-
-package mb.pie.lang.test.returnTypes;
-
-func main_int() -> int = {
-  6
-}

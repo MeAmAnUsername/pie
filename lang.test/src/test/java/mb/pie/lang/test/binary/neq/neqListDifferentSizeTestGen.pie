@@ -1,7 +1,0 @@
-module test.binary.neq.neqListDifferentSize;
-
-package mb.pie.lang.test.binary.neq;
-
-func main_neqListDifferentSize() -> bool = {
-  [0, 1] != [0, 1, 2]
-}

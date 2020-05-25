@@ -1,7 +1,0 @@
-module test.binary.neq.neqIntDifferent;
-
-package mb.pie.lang.test.binary.neq;
-
-func main_neqIntDifferent() -> bool = {
-  128 != -128
-}

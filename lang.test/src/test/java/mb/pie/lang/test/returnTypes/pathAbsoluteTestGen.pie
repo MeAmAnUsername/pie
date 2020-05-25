@@ -1,7 +1,0 @@
-module test.returnTypes.pathAbsolute;
-
-package mb.pie.lang.test.returnTypes;
-
-func main_pathAbsolute() -> path = {
-  /foo/bar
-}

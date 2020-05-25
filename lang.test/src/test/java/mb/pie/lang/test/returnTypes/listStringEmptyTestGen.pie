@@ -1,7 +1,0 @@
-module test.returnTypes.listStringEmpty;
-
-package mb.pie.lang.test.returnTypes;
-
-func main_listStringEmpty() -> string* = {
-  []
-}

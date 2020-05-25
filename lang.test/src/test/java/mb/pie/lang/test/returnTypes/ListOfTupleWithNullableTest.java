@@ -1,10 +1,10 @@
 package mb.pie.lang.test.returnTypes;
 
 class ListOfTupleWithNullableTest{
-//    @Test void test() throws ExecException {
+//    @Test void test() throws Exception {
 //        final main___error__listOfTupleWithNullable main = new main___error__listOfTupleWithNullable();
 //        final PieRunner pieRunner = new PieRunner(main);
-//        try(PieSession session = pieRunner.newSession()) {
+//        try(Session session = pieRunner.newSession()) {
 //            final ArrayList<Tuple3<Integer, String, Boolean>> output = session.require(main.createTask(None.instance));
 //            assertEquals(new ArrayList<>(Arrays.asList(
 //            		new Tuple3<>(5, "no", null),

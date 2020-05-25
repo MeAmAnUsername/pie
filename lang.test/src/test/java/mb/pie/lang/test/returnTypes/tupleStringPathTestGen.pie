@@ -1,7 +1,0 @@
-module test.returnTypes.tupleStringPath;
-
-package mb.pie.lang.test.returnTypes;
-
-func main_tupleStringPath() -> (string, path) = {
-  ("Folder with pictures", /c/home/bob/pictures)
-}

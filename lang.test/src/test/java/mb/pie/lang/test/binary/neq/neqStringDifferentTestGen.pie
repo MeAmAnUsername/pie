@@ -1,7 +1,0 @@
-module test.binary.neq.neqStringDifferent;
-
-package mb.pie.lang.test.binary.neq;
-
-func main_neqStringDifferent() -> bool = {
-  "capitalized?" != "Capitalized?"
-}

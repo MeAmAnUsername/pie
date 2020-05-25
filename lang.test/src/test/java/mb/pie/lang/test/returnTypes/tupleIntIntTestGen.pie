@@ -1,7 +1,0 @@
-module test.returnTypes.tupleIntInt;
-
-package mb.pie.lang.test.returnTypes;
-
-func main_tupleIntInt() -> (int, int) = {
-  (4, -90)
-}
