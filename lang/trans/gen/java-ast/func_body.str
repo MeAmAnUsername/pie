@@ -660,12 +660,7 @@ rules // Qualified function calls
     ; encompassingClassName    := <concat-strings-separator(|"_")> fullyQualifiedModuleList
     ; rules(InjectValues :+= (
         $[_[safeJavaClassId]],
-        ClassType([], Id("Provider"), Some(TypeArguments([ClassOrInterfaceTypeMember(
-          ClassType([], Id(encompassingClassName), None())
-        , []
-        , javaClassId
-        , None()
-        )])))
+        ClassType([], Id("Provider"), Some(TypeArguments([ClassType([], Id(javaClassId), None())])))
       ))
 
 rules // PIE function calls
