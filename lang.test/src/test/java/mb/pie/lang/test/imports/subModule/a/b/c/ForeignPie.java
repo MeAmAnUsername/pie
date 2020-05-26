@@ -8,12 +8,12 @@ import mb.pie.api.ExecException;
 import mb.pie.api.ExecContext;
 import javax.inject.Inject;
 
-public class foreign_pie implements TaskDef<None, None> {
-  private static final String _id = "foreign_pie";
-  @Inject public foreign_pie( ) {
+public class ForeignPie implements TaskDef<None, None> {
+  private static final String _id = "ForeignPie";
+  @Inject public ForeignPie( ) {
   }
   public String getId( ) {
-    return foreign_pie._id;
+    return ForeignPie._id;
   }
   @Override public Serializable key(None input) {
     return input;
