@@ -17,7 +17,7 @@ abstract class PieTestModule {
         main_importPartialModulePath importPartialModulePath,
         helper_function helper_function
     ) {
-        final HashSet<TaskDef<?, ?>> taskDefs = new HashSet<>(1, 1);
+        final HashSet<TaskDef<?, ?>> taskDefs = new HashSet<>(2, 1);
         taskDefs.add(importPartialModulePath);
         taskDefs.add(helper_function);
         return taskDefs;

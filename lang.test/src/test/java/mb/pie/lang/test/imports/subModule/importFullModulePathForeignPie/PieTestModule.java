@@ -17,7 +17,7 @@ abstract class PieTestModule {
         main_importFullModulePathForeignPie importFullModulePathForeignPie,
         ForeignPie foreignPie
     ) {
-        final HashSet<TaskDef<?, ?>> taskDefs = new HashSet<>(1, 1);
+        final HashSet<TaskDef<?, ?>> taskDefs = new HashSet<>(2, 1);
         taskDefs.add(importFullModulePathForeignPie);
         taskDefs.add(foreignPie);
         return taskDefs;

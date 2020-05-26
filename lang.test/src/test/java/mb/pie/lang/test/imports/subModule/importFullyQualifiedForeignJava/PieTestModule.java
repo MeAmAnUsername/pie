@@ -4,7 +4,6 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.multibindings.ElementsIntoSet;
 import mb.pie.api.TaskDef;
-import mb.pie.lang.test.imports.subModule.a.b.c.helper_function;
 
 import javax.inject.Singleton;
 import java.util.HashSet;
@@ -14,12 +13,10 @@ import java.util.Set;
 abstract class PieTestModule {
     @Provides @Singleton @ElementsIntoSet
     public static Set<TaskDef<?, ?>> provideTaskDefs(
-        main_importFullyQualifiedForeignJava importFullyQualifiedForeignJava,
-        helper_function helper_function
+        main_importFullyQualifiedForeignJava importFullyQualifiedForeignJava
     ) {
-        final HashSet<TaskDef<?, ?>> taskDefs = new HashSet<>(2, 1);
+        final HashSet<TaskDef<?, ?>> taskDefs = new HashSet<>(1, 1);
         taskDefs.add(importFullyQualifiedForeignJava);
-        taskDefs.add(helper_function);
         return taskDefs;
     }
 }
