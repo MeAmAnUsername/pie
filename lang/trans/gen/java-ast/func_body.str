@@ -553,13 +553,10 @@ rules // Qualified function calls
   p2j-ast-exp:
     c@ImportCall(moduleList, funcId, argExps) -> result
     where
-      debug(|"Check ImportCall foreign java method; ");
       JavaForeignFuncKind() := <pie-ast-ref-prop(|"Func", "kind")> funcId
-      ; debug(|"Check succeeded; ")
     with
-      debug(|"Start ImportCall foreign java method; ");
       javaClassId                 := <pie-ast-ref-prop(|"Func", "javaClassId")> funcId
-    ; ambiguousNameJavaClassId    := <java-qualifiedClass-to-ambiguousName> javaClassId
+    ; expressionNameJavaClassId    := <java-qualifiedClass-to-expressionName> <string-tokenize(|['.'])> javaClassId
     ; javaMethodId                := <pie-ast-ref-prop(|"Func", "javaMethodId")> funcId
     ; (argExpsStmts, argExpsVals) := <unzip> <map(try-p2j-ast-exp)> argExps
     ; callResultName              := <newname> "callResult"
@@ -571,7 +568,7 @@ rules // Qualified function calls
           , <java-classType-to-unannType> ty
           , [ VariableDeclInit(
                 VariableDecl(Id(callResultName))
-              , InvokeQExp(ExpressionName(ambiguousNameJavaClassId), None(), Id(javaMethodId), argExpsVals)
+              , InvokeQExp(expressionNameJavaClassId, None(), Id(javaMethodId), argExpsVals)
               )
             ]
           ))
@@ -656,7 +653,6 @@ rules // Qualified function calls
     ; result                   := (stmts, callResultName)
     ; fullyQualifiedModuleList := <pie-ast-ref-prop(|"Func", "qualifiedModule")> funcId
     // todo: pie-ast-ref-prop gives incorrect results if there are two functions with the same name?
-    ; <debug(|"fullyQualifiedModuleList: ")> fullyQualifiedModuleList
     ; encompassingClassName    := <concat-strings-separator(|".")> fullyQualifiedModuleList
     ; <add-import> $[[encompassingClassName].[javaClassId]]
     ; rules(InjectValues :+= (
