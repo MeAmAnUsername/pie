@@ -657,7 +657,8 @@ rules // Qualified function calls
     ; fullyQualifiedModuleList := <pie-ast-ref-prop(|"Func", "qualifiedModule")> funcId
     // todo: pie-ast-ref-prop gives incorrect results if there are two functions with the same name?
     ; <debug(|"fullyQualifiedModuleList: ")> fullyQualifiedModuleList
-    ; encompassingClassName    := <concat-strings-separator(|"_")> fullyQualifiedModuleList
+    ; encompassingClassName    := <concat-strings-separator(|".")> fullyQualifiedModuleList
+    ; <add-import> $[[encompassingClassName].[javaClassId]]
     ; rules(InjectValues :+= (
         $[_[safeJavaClassId]],
         ClassType([], Id("Provider"), Some(TypeArguments([ClassType([], Id(javaClassId), None())])))

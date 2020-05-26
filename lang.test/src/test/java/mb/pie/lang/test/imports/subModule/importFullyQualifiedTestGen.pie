@@ -1,7 +1,0 @@
-module mb.pie.lang.test.imports.subModule.main;
-package mb.pie.lang.test.imports.subModule;
-
-func main_importFullyQualified() -> unit = {
-  mb.pie.lang.test.imports.subModule.a.b.c.theFunction();
-  unit
-}
