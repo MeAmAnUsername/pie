@@ -1,4 +1,4 @@
-package mb.pie.lang.test.imports.subModule;
+package mb.pie.lang.test.imports.subModule.a.b.c;
 
 import mb.pie.api.None;
 
