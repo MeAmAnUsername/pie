@@ -556,7 +556,7 @@ rules // Qualified function calls
       JavaForeignFuncKind() := <pie-ast-ref-prop(|"Func", "kind")> funcId
     with
       javaClassId                 := <pie-ast-ref-prop(|"Func", "javaClassId")> funcId
-    ; expressionNameJavaClassId    := <java-qualifiedClass-to-expressionName> <string-tokenize(|['.'])> javaClassId
+    ; expressionNameJavaClassId   := <java-qualifiedClass-to-expressionName> <string-tokenize(|['.'])> javaClassId
     ; javaMethodId                := <pie-ast-ref-prop(|"Func", "javaMethodId")> funcId
     ; (argExpsStmts, argExpsVals) := <unzip> <map(try-p2j-ast-exp)> argExps
     ; callResultName              := <newname> "callResult"
