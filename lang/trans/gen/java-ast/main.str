@@ -48,21 +48,36 @@ rules
    * output-dir:
    *   (file, Program(Module(mod), package, _, _)) -> result
    *   type: (String, Pie Program AST node) -> String
-   * get the output directory for the given Pie file
+   * Get the output directory for the given Pie file.
+   * Returns the path specified in pie/config.txt if it exists, otherwise the
+   * same directory as file.
    */
   output-dir:
     (file, Program(Module(mod), _, _)) -> result
     with
     // Note: this strategy assumes files of the form "path/to/file.pie"
-      relativeTargetDir    := <config-get-output-dir>
-    ; ['.' | ['/' | rest]] := <explode-string> relativeTargetDir
-    ; '/'                  := <last> rest // assert that last character is a /
-    ; rootPackageDir       := <implode-string> rest
-    ; packageStr           := <concat-strings> <separate-by(|"/")> mod
-    ; result               := $[[rootPackageDir][packageStr]]
+      rootPackageDir := <config-get-output-dir(|file)>
+    ; packageStr     := <concat-strings> <separate-by(|"/")> mod
+    ; result         := $[[rootPackageDir]/[packageStr]]
 
-  config-get-output-dir = <read-text-file> <file-exists> "pie/config.txt"
-  config-get-output-dir = !"./build/generated/sources/"
+  /**
+   * config-get-output-dir(|file): _ -> result
+   *   Type: _ -> String
+   *   Param: String
+   * Returns the output directory for compiling file. File should not contain a
+   * leading slash, e.g. foo/bar.pie instead of /foo/bar.pie
+   * The result is a reltive path from the project directory, without a
+   * leading or trailing slash, e.g. `build/generated/sources`.
+   */
+  config-get-output-dir(|file): _ -> result
+    where
+      <file-exists> "pie/config.txt"
+    with
+      relativeTargetDir    := <read-text-file> "pie/config.txt"
+    ; ['.' | ['/' | rest]] := <explode-string> relativeTargetDir
+    ; result               := <implode-string> rest
+
+  config-get-output-dir(|file) = <dirname> file
 
   p2j-ast-to-filestring(|pieFile):
     ast ->
