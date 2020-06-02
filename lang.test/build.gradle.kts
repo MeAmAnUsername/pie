@@ -27,3 +27,9 @@ dependencies {
   testImplementation(project(":pie.lang.runtime.java"))
   testImplementation(project(":pie.dagger"))
 }
+
+sourceSets {
+  main {
+    java.srcDirs(java.srcDirs, "build/generated/sources")
+  }
+}
