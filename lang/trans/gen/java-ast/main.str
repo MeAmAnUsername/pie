@@ -31,7 +31,6 @@ rules
       fileName         := <base-filename;remove-extension> file
     ; fileNamePrefix   := <generate-classname> (fileName, pieAst)
     ; dirName          := <output-dir> (file, pieAst)
-//    ; <mkdir> dirName
     ; namesAndClasses  := <p2j-ast> pieAst
     ; (names, classes) := <unzip> namesAndClasses
     ; files            := <map(p2j-ast-to-filestring(|fileName))> classes
@@ -55,19 +54,12 @@ rules
     (file, Program(Module(mod), _, _)) -> result
     with
     // Note: this strategy assumes files of the form "path/to/file.pie"
-      ppdebugna(|"started: ");
       relativeTargetDir    := <config-get-output-dir>
-      ; <ppdebugna(|"relativeTargetDir: ")> relativeTargetDir
     ; ['.' | ['/' | rest]] := <explode-string> relativeTargetDir
-      ; <ppdebugna(|"rest: ")> rest
     ; '/'                  := <last> rest // assert that last character is a /
-      ; ppdebugna(|"assertion passed: ")
     ; rootPackageDir       := <implode-string> rest
-      ; <ppdebugna(|"rootPackageDir: ")> rootPackageDir
     ; packageStr           := <concat-strings> <separate-by(|"/")> mod
-      ; <ppdebugna(|"packageStr: ")> packageStr
     ; result               := $[[rootPackageDir][packageStr]]
-      ; <ppdebugna(|"result: ")> result
 
   config-get-output-dir = <read-text-file> <file-exists> "pie/config.txt"
   config-get-output-dir = !"./build/generated/sources/"
