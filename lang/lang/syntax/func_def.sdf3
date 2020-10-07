@@ -8,11 +8,14 @@ imports
 
 context-free syntax // Function head
 
-  FuncHead.FuncHead = [[FUNCID]([Params]) -> [Type]]
+  FuncHead.FuncHead = [[FUNCID]([Params])[ContextParams] -> [Type]]
 
   Param.Param   = <<Type>>
   Param.NParam  = <<VALID> : <Type>> {prefer} // prefer this over a Param(ImportTy(...))
   Params.Params = <<{Param ", "}*>>
+  
+  ContextParams.NoContextParams = <>
+  ContextParams.ContextParams = <[<{Param ", "}*>]>
 
 context-free syntax // Function definition
 
