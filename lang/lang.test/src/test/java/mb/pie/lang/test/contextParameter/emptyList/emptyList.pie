@@ -1,0 +1,3 @@
+module mb:pie:lang:test:contextParameter:emptyList
+
+func main_emptyList()[] -> int = 8
