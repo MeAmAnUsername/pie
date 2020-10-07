@@ -16,7 +16,7 @@ imports
 rules // PIE function definitions
 
   p2j-def:
-    FuncDef(FuncHead(funcId, params, type), PieFuncImpl(body, optKeyBody)) -> str
+    FuncDef(FuncHead(funcId, params, contextParams, type), PieFuncImpl(body, optKeyBody)) -> str
     with
       className   := <pie-sanitize-class-id> funcId
     with

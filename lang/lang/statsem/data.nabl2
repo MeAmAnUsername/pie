@@ -35,7 +35,7 @@ rules // Java foreign data definition
     occ_type_outer.kind := JavaTypeKind() !,
     Map1 [[ membs ^ (s) ]].
 
-  [[ JavaFuncDef(FuncHead(id_func, params, ty_out)) ^ (s) ]] :=
+  [[ JavaFuncDef(id_func, params, ty_out) ^ (s) ]] :=
     Func{id_func} <- s,
     [[ params ^ (s) : tys_in ]],
     [[ ty_out ^ (s) : ty_out_bound ]],

@@ -4,6 +4,7 @@ imports
   
   lex/literal
   func_def
+  type
   
 context-free syntax // Data definition
 
@@ -20,7 +21,7 @@ context-free syntax // Java foreign data definition
   DataImpl.JavaDataImpl = <foreign java <JAVAQTYPEID> {
   <{JavaDataMemb "\n"}*>
 }>
-  JavaDataMemb.JavaFuncDef = <func <FuncHead>>
+  JavaDataMemb.JavaFuncDef = [func [JAVAFUNCID]([Params]) -> [Type]]
 
 lexical syntax // Reject keywords
 
