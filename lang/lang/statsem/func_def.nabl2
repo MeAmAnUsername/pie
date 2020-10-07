@@ -6,11 +6,12 @@ imports
 
 rules // Function definition
 
-  [[ FuncDef(FuncHead(id_func, params, ty_out), impl) ^ (s) ]] :=
+  [[ FuncDef(FuncHead(id_func, params, context_params, ty_out), impl) ^ (s) ]] :=
     Func{id_func} <- s,
     new s_func,
     s_func -P-> s,
     [[ params ^ (s_func) : tys_in ]],
+    [[ context_params ^ (s_func) : _ ]],
     new s_func_out,
     s_func_out -P-> s_func,
     [[ ty_out ^ (s) : ty_out_bound ]],
@@ -22,6 +23,9 @@ rules // Function definition
 rules // Parameters
 
   [[ Params(params) ^ (s) : tys ]] :=
+    Map1T [[ params ^ (s) : tys ]].
+
+  [[ ContextParams(params) ^ (s) : tys ]] :=
     Map1T [[ params ^ (s) : tys ]].
 
   [[ Param(ty) ^ (s) : ty_bound ]] :=
