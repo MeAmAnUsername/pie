@@ -1,0 +1,3 @@
+module mb:pie:lang:test:contextParameter:noList
+
+func main_noList() -> bool = true
