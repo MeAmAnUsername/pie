@@ -15,3 +15,5 @@ rules
   desugar: StamperPart(stamper) -> stamper
 
   desugar: FilterPart(filter) -> filter
+
+  desugar: FuncHead(funcid, params, NoContextParams(), type) -> FuncHead(funcid, params, ContextParams([]), type)
