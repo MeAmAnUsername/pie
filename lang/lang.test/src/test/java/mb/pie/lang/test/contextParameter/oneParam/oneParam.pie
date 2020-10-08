@@ -1,0 +1,3 @@
+module mb:pie:lang:test:contextParameter:oneParam
+
+func main_oneParam()[text: string] -> string = text
