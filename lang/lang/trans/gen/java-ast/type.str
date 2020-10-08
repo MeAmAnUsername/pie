@@ -169,6 +169,12 @@ rules
   ; last   := <type-tuple-to-ast-formal-param> <last> idTypeTuples
   ; result := ParamList(rest, last)
 
+  // param-to-ast-type-tuple:
+  //   Param or NParam to (varId: string, JavaType)
+  // transforms a Pie parameter to a pair of name and type
+  param-to-ast-type-tuple: Param(type) -> (<newname> "unnamedParam", <p2j-ast-type-sig> type)
+  param-to-ast-type-tuple: NParam(name, type) -> (name, <p2j-ast-type-sig> type)
+  
   type-tuple-to-ast-field:
     (varId, ty) -> FieldDecl([Public(), Final()], <java-classType-to-unannType> ty, [varId])
     // Note: meaning of this AST: public final [ty] [varId];

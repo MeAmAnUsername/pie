@@ -434,6 +434,11 @@ rules // References
       LocalVarKind() := <pie-ast-ref-prop(|"Var", "kind")> varId
 
   p2j-ast-exp:
+    r@Ref(varId) -> ([], ExpressionName(Id(varId)))
+    where
+      ContextVarKind() := <pie-ast-ref-prop(|"Var", "kind")> varId
+
+  p2j-ast-exp:
     Ref(varId) -> <fail>
     where
       InputVarKind() := <pie-ast-ref-prop(|"Var", "kind")> varId

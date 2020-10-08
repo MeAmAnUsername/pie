@@ -26,7 +26,7 @@ rules // PIE function definitions
   // InjectValues are the values that will be injected
   // into the constructor of the Java class
   p2j-ast-def:
-    FuncDef(FuncHead(funcId, params, contextParams, type), PieFuncImpl(body, optKeyBody)) -> result
+    FuncDef(FuncHead(funcId, params, ContextParams(contextParams), type), PieFuncImpl(body, optKeyBody)) -> result
     with
       <debug(|"start p2j-ast-def: ")> funcId
     ; className   := <pie-sanitize-class-id> funcId
@@ -37,9 +37,11 @@ rules // PIE function definitions
     ; (stmts, lastValue)              := <p2j-ast-pie-func-impl-body> body
     ; keyImpl                         := <p2j-ast-pie-func-key-body> optKeyBody
     ; injectTuples                    := <bagof-InjectValues; make-set>
-    ; fields                          := <map(type-tuple-to-ast-field)> injectTuples
-    ; constructorParams               := <create-ast-formal-params> injectTuples
-    ; assignments                     := <map(type-tuple-to-ast-assignment)> injectTuples
+    ; contextTypeTuples               := <map(param-to-ast-type-tuple)> contextParams
+    ; fullInjectTuples                := <concat> [injectTuples, contextTypeTuples]
+    ; fields                          := <map(type-tuple-to-ast-field)> fullInjectTuples
+    ; constructorParams               := <create-ast-formal-params> fullInjectTuples
+    ; assignments                     := <map(type-tuple-to-ast-assignment)> fullInjectTuples
     ; returnValue                     := <?UnitTy(); !<Snd> <p2j-ast-exp> UnitLit() <+ !lastValue> type
    |}
     with
