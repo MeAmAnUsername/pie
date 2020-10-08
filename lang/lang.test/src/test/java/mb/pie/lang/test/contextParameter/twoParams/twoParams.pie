@@ -1,0 +1,4 @@
+module mb:pie:lang:test:contextParameter:twoParams
+
+func main_twoParams()[period: string, count: int] -> string =
+  "There have been no accidents for $count ${period}${if (count == 1) "" else "s"}!"
