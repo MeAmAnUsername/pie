@@ -23,17 +23,17 @@ rules // Function definition
 rules // Parameters
 
   [[ Params(params) ^ (s) : tys ]] :=
-    Map1T [[ params ^ (s) : tys ]].
+    Map2T [[ params ^ (s, InputVarKind()) : tys ]].
 
   [[ ContextParams(params) ^ (s) : tys ]] :=
-    Map1T [[ params ^ (s) : tys ]].
+    Map2T [[ params ^ (s, ContextVarKind()) : tys ]].
 
-  [[ Param(ty) ^ (s) : ty_bound ]] :=
+  [[ Param(ty) ^ (s, _) : ty_bound ]] :=
     [[ ty ^ (s) : ty_bound ]].
     
-  [[ NParam(id_var, ty) ^ (s) : ty_bound ]] :=
+  [[ NParam(id_var, ty) ^ (s, var_kind) : ty_bound ]] :=
      Var{id_var} <- s,
-     Var{id_var}.kind := InputVarKind() !,
+     Var{id_var}.kind := var_kind !,
      [[ ty ^ (s) : ty_bound ]],
      Var{id_var} : ty_bound !.
 

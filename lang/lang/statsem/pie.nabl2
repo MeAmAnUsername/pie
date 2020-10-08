@@ -27,8 +27,9 @@ signature
     PieForeignFuncKind : FuncKind
     PieFuncKind     : FuncKind
 
-    LocalVarKind : VarKind
-    InputVarKind : VarKind
+    LocalVarKind   : VarKind
+    InputVarKind   : VarKind
+    ContextVarKind : VarKind
 
   functions
 
