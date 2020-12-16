@@ -1,0 +1,50 @@
+module module
+
+language pie
+
+test missing module statement [[ ]] parse fails
+test module statement missing layout [[ moduletest ]] parse fails
+test module statement layout in keyword [[ mod ule test ]] parse fails
+test module statement missing name [[ module ]] parse fails
+test module statement no nesting [[module example]]
+test module statement nested 1 [[module example:sub]]
+test module statement nested 2 [[module example:sub:subb]]
+test module statement nested many [[module example:sub:subb:foo:bar:very:deeply:nested:module]]
+test module statement nesting duplicate name [[module example:example]]
+
+test module statement number in name [[module example1]]
+test module statement underscore in name [[module example_test]]
+test module statement dash in name [[module example-test]]
+test module statement capital in name [[module exampleTest]]
+test module statement start with capital [[module Example]]
+test module statement ALL_CAPS [[module EXAMPLE]]
+test module statement snake_Camel case [[module example_Test]]
+test module statement ` in name [[module example`test]] parse fails
+test module statement ~ in name [[module example~test]] parse fails
+test module statement ! in name [[module example!test]] parse fails
+test module statement @ in name [[module example@test]] parse fails
+test module statement # in name [[module example#test]] parse fails
+test module statement $ in name [[module example$test]] parse fails
+test module statement % in name [[module example%test]] parse fails
+test module statement ^ in name [[module example^test]] parse fails
+test module statement & in name [[module example&test]] parse fails
+test module statement * in name [[module example*test]] parse fails
+test module statement ( in name [[module example(test]] parse fails
+test module statement ) in name [[module example)test]] parse fails
+test module statement + in name [[module example+test]] parse fails
+test module statement = in name [[module example=test]] parse fails
+test module statement open square bracket in name [[module example[test]] parse fails
+test module statement closing square bracket in name [[module example]test]] parse fails
+test module statement { in name [[module example{test]] parse fails
+test module statement } in name [[module example}test]] parse fails
+test module statement ; in name [[module example;test]] parse fails
+test module statement empty name [[module example:sub1::sub3]] parse fails
+test module statement name equals "module" [[module module]]
+test allow non-layout after non-keyword module [[module moduletest]]
+test module statement name equals "int" [[module int]]
+test module statement start with number [[module 123test]] parse fails
+test duplicate module statement  [[
+  module example
+  module test
+]] parse fails
+test module statement closing ; [[module example;]] parse fails

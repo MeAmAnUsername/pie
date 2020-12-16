@@ -9,6 +9,7 @@ imports
   gen/kotlin/main
   gen/java-string/main
   gen/java-ast/main
+  statics
 
 rules // Debugging
 

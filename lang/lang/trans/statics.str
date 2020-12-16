@@ -1,0 +1,46 @@
+module statics
+
+imports
+
+  signatures/type-sig
+  gen/util
+
+signature
+  constructors
+    UnitType     : StatixType
+    BoolType     : StatixType
+    IntType      : StatixType
+    StrType      : StatixType
+    PathType     : StatixType
+    NullType     : StatixType
+    TopType      : StatixType
+    DataType     : TYPEID -> StatixType
+    ImportType   : List(MODID) * TYPEID -> StatixType
+    TupleType    : List(StatixType) -> StatixType
+    ListType     : StatixType -> StatixType
+    SupplierType : StatixType -> StatixType
+    FuncType     : List(StatixType) * StatixType -> StatixType
+    NullableType : StatixType -> StatixType
+
+rules
+
+  pie-ast-type = pie-type; transform-to-statix-type
+
+  transform-to-statix-type: UnitTy()                -> UnitType()
+  transform-to-statix-type: BoolTy()                -> BoolType()
+  transform-to-statix-type: IntTy()                 -> IntType()
+  transform-to-statix-type: StrTy()                 -> StrType()
+  transform-to-statix-type: PathTy()                -> PathType()
+  transform-to-statix-type: NullTy()                -> NullType()
+  transform-to-statix-type: TopTy()                 -> TopType()
+  transform-to-statix-type: DataTy(name)            -> DataType(name)
+  transform-to-statix-type: ImportTy(modList, name) -> ImportType(modList, name)
+  transform-to-statix-type: TupleTy(tys)            -> TupleType(<transform-to-statix-type> tys)
+  transform-to-statix-type: ListTy(ty)              -> ListType(<transform-to-statix-type> ty)
+  transform-to-statix-type: SupplierTy(ty)          -> SupplierType(<transform-to-statix-type> ty)
+  transform-to-statix-type:
+    FuncTy(tys_in, ty_out) -> FuncType(
+      <map(transform-to-statix-type)> tys_in,
+      <transform-to-statix-type> ty_out
+    )
+  transform-to-statix-type: NullableTy(ty)         -> NullableType(<transform-to-statix-type> ty)

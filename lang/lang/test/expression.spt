@@ -1,0 +1,228 @@
+module expression
+
+language pie
+
+fixture [[
+  module test:expression
+  
+  func main(name: string, comment: string?, enableFinagle: bool, value: int) -> unit = {
+    [[...]];
+    
+    unit
+  }
+
+  func anotherFunc() -> int = 9
+  func double(x: int) -> int = x+x
+  func argsFunc(x: int, y: int, name: string) -> string = "not implemented"
+]]
+
+
+// literals
+test unit literal [[ val x: unit = unit ]] analysis succeeds
+test null literal [[ val x: string? = null ]] analysis succeeds
+test int literal [[ val x: int = 8 ]] analysis succeeds
+test string literal [[ val x: string = "Hello world!" ]] analysis succeeds
+test absolute path literal [[ val x: path = ./tmp/test.txt ]] analysis succeeds
+test relative path literal [[ val x: path = ./test.txt ]] analysis succeeds
+test true literal [[ val x: bool = true ]] analysis succeeds
+test false literal [[ val x: bool = false ]] analysis succeeds
+test tuple literal [[ val x: (int, int?, string) = (1, 9?, "hello?") ]] analysis succeeds
+test empty list literal [[ val x: string* = [] ]] analysis succeeds
+test list literal [[ val x: int* = [1, 2] ]] analysis succeeds
+test list literal with null [[ val x: int?* = [1, null, 3] ]] analysis succeeds
+
+// simple expressions
+test empty block [[ {} ]] analysis succeeds
+test block 1 element [[ val foo: int = { 5 } ]] analysis succeeds
+test block 2 elements [[
+  val foo: string = {
+    val bar: int = 8;
+    "value: $bar"
+  }
+]] analysis succeeds
+test nested block [[
+  val foo: bool = {{
+    val [[bar]] = ./values;
+    {
+      exists [[bar]]
+    }
+  }}
+]] 0 errors
+   0 warnings
+   resolve #2 to #1
+test shadowing in block [[
+  val foo: int = 8;
+  {
+    val [[foo]]: string = "hello world!";
+    foo
+  }
+]] >= 1 error at #1 // error like "duplicate"
+   0 warnings
+
+test toNullable [[ val x: int? = 8? ]] analysis succeeds
+test toNullable null [[ val x = null? ]] analysis succeeds
+test toNonNullable [[ val x: int = [[null!]] ]] 1 errors at #1    0 warnings
+test not [[ val b: bool = [[!enableFinagle]] ]] analysis succeeds
+
+test equals int [[ val b: bool = value == 5 ]] analysis succeeds
+test equals string [[ val b: bool = "Bob" == name ]] analysis succeeds
+test equals null [[ val b: bool = comment == null ]] analysis succeeds
+test equals non-nullable string to nullable string [[ val b: bool = name == comment ]] analysis succeeds
+test equals type mismatch [[ val b: bool = name == value ]] analysis fails
+test equals disallow comparing non-compatible nullable types [[ 5? == ""? ]] 1 error 0 warnings
+
+test not equals int [[ val b: bool = 9 != 9 ]] analysis succeeds
+test not equals string [[ val b: bool = name != "Fred" ]] analysis succeeds
+test not equals null [[ val b: bool = comment != null ]] analysis succeeds
+test not equals non-nullable string to nullable string [[ val b: bool = name != comment ]] analysis succeeds
+test not equals type mismatch [[ val b: bool = name != value ]] analysis fails
+test not equals disallow comparing non-compatible nullable types [[ 5? != ""? ]]
+  1 error
+  0 warnings
+
+
+//test or [[ [[enableFinagle || value == 0]] ]] run pie-ast-type on #1 to BoolType()
+//test testing [[ [[ false ]] ]] run pie-ast-type on #1 to BoolType()
+//
+//test or [[ val b: bool = enableFinagle || value == 0 ]] analysis succeeds
+//
+//test and [[ val b: bool = !enableFinagle && value == 30 ]] analysis succeeds
+//
+//test add ints [[ [[ 1 + 2 + 3 ]] ]] analysis succeeds run pie-ast-type on #1 to IntType()
+//test add int and string [[ 1 + "2" ]] analysis fails
+//test add int and bool [[ 1 + true ]] analysis fails
+//test add strings [[ [[ "hello" + " world" ]] ]] analysis succeeds run pie-ast-type on #1 to StrType()
+//test add string and int [[ [[ "1" + 2 ]] ]] analysis succeeds run pie-ast-type on #1 to StrType()
+//test add string and path [[ [[ "./" + ./text.txt ]] ]] analysis succeeds run pie-ast-type on #1 to StrType()
+//test add string and tuple [[ [[ "./" + ("hello", 78, false) ]] ]] analysis succeeds run pie-ast-type on #1 to StrType()
+//test add path and path [[ [[ ./ + ./test.txt ]] ]] analysis succeeds run pie-ast-type on #1 to PathType()
+//test add path and string [[ [[ / + "test.txt" ]] ]] analysis succeeds run pie-ast-type on #1 to PathType()
+//test add path and int [[ ./ + 7 ]] analysis fails
+//test add path and bool [[ ./ + false ]] analysis fails
+//test concatenate lists [[ [[ ["hello", " "] + ["world"] ]] ]] analysis succeeds run pie-ast-type on #1 to ListType(StrType())
+//test concatenate with empty list [[ [[ ["hello", "world"] + [] ]] ]]
+//  analysis succeeds
+//  1 warning
+//  warning like "concatenating an empty list" at #1
+//  run pie-ast-type on #1 to ListType(StrType())
+//test add element to list [[ [[ [1, 2, 3] + 4 ]] ]] analysis succeeds run pie-ast-type on #1 to ListType(IntType())
+//test add null to list [[ [[ [1, 2, 3] + null ]] ]] analysis succeeds run pie-ast-type on #1 to ListType(NullableType(IntType()))
+//test add element to nullable list [[ [[ [1, null, 3] + 4 ]] ]] analysis succeeds run pie-ast-type on #1 to ListType(NullableType(IntType()))
+//test add null to nullable list [[ [[ [1, null, 3] + null ]] ]] analysis succeeds run pie-ast-type on #1 to ListType(NullableType(IntType()))
+//// todo: add DataType subtype to list
+//test concatenate list to empty list [[ [[ [] + [1, 2] ]] ]] analysis succeeds run pie-ast-type on #1 to ListType(IntType())
+//test add two empty lists [[ [[ [] + [] ]] ]]
+//  analysis succeeds
+//  1 warning
+//  warning like "concatenating an empty list" at #1
+//  run pie-ast-type on #1 to EmptyListType()
+//test add element to empty list [[ [[ [] + true ]] ]] analysis succeeds run pie-ast-type on #1 to ListType(BoolType())
+//test add null to empty list [[ [[ [] + null ]] ]] analysis succeeds run pie-ast-type on #1 to ListType(NullType())
+//
+//test if [[ if (enableFinagle) anotherFunc() ]] analysis succeeds
+//test if with block [[ if (enableFinagle) {anotherFunc(); return unit} ]] analysis succeeds
+//test if condition not boolean [[ if ([[0]]) unit ]] 1 error at #1
+//test if error in branch [[ if (!enableFinagle) return [[anotherFunc()]] ]] 1 error at #1
+//
+//test ifelse [[ [[ if (value == 10) "hello" else "world" ]] ]] analysis succeeds run pie-ast-type on #1 to StrType()
+//test ifelse condition not boolean [[ if ([["true"]]) 1 else 5 ]] 1 error at #1
+//test ifelse true branch null [[ [[ if (value == 10) null else "a string" ]] ]] analysis succeeds run pie-ast-type on #1 to NullableType(StrType())
+//test ifelse false branch null [[ [[ if (comment != null) "Comment: $comment" else null ]] ]] analysis succeeds run pie-ast-type on #1 to NullableType(StrType())
+//test ifelse branch type mismatch [[ if (value == 0) "hello" else 10 ]] 1 error
+//test ifelse with blocks [[ [[ if (value == 10) {"hello"} else {anotherFunc(); "world"} ]] ]] analysis succeeds run pie-ast-type on #1 to StrType()
+//test ifelse error in any branch [[ if (value == 10) [[not_defined]] else "world" ]] error like "resolve" at #1
+//test ifelse error in dead code [[ if (true) "hello" else [[not_defined]] ]] error like "resolve" at #1
+//
+//test list comprehension [[ [[ ["$x * 3 = ${x+x+x}" | x <- [1, 2, 3] ] ]] ]] analysis succeeds run pie-ast-type on #1 to ListType(StrType())
+//test list comprehension tuple binder [[ [[ ["$str: $val" | (str, val) <- [("one", 1), ("two", 2), ("three", 3)] ] ]] ]] analysis succeeds run pie-ast-type on #1 to ListType(StrType())
+//test list comprehension single binder on tuple [[
+//  [{
+//    val (str: string, val: int) = [[mapping]];
+//    "$str -> $val"
+//  } | [[mapping]] <- [("one", 1), ("two", 2), ("three", 3)] ]
+//]] analysis succeeds
+//   resolve #1 to #2
+//   run pie-ast-type on #2 to TupleType([StrType(), IntType()])
+//   run pie-ast-type on #1 to TupleType([StrType(), IntType()])
+//test list comprehension not a list [[ ["$x * 3 = ${x+x+x}" | x <- [[ (1, 2, 3) ]] ] ]] error like "expected" at #1
+//test list comprehension empty list [[ ["$x * 3 = ${x+x+x}" | x <- [[ [] ]] ] ]] warning like "empty list" at #1
+//test list comprehension binder type mismatch [[ ["$x * 3 = ${x+x+x}" | x: [[string]] <- [1, 2, 3] ] ]] error like "Type mismatch" at #1
+//test list comprehension binder tuple binder on non-tuple list [[ ["$x * 3 = ${x+x+x}" | (x, y) <- [1, 2, 3] ] ]] analysis fails
+//test list comprehension binder count mismatch [[ ["$x * 3 = ${x+x+x}" | (x, y) <- [(1, "one", "een"), (2, "two", "twee")] ] ]] analysis fails
+//test list comprehension map expression errors [[ [ x + " * 3 = ${x+x+x}" | x <- [1, 2, 3] ] ]] 1 error // error like "Type mismatch"
+//
+//test val declaration single bind [[ val [[x]] = 9+7 ]] analysis succeeds run pie-ast-type on #1 to IntType()
+//test val declaration single bind with type [[val [[x]]: bool = true ]] analysis succeeds run pie-ast-type on #1 to BoolType()
+//test val declaration single bind type mismatch [[ val x: [[string]] = null ]] 1 error error like "Type mismatch" at #1
+//test val declaration assign tuple to single bind [[ val [[tup]] = ("left", "right") ]] analysis succeeds run pie-ast-type on #1 to TupleType([StrType(), StrType()])
+//test val declaration tuple bind [[
+//  val ([[val]], [[str]]) = (3, "three")
+//]] analysis succeeds
+//   run pie-ast-type on #1 to IntType()
+//   run pie-ast-type on #2 to StrType()
+//test val declaration tuple bind with types [[
+//  val ([[student]]: string?, grades: int*) = ("bob", [6, 7, 5, 8, 3, 7, 6, 7])
+//]] analysis succeeds
+//   run pie-ast-type on #1 to NullableType(StrType())
+//test val declaration tuple bind mixed typed/untyped [[
+//  val ([[names]]: string?*, [[values]]) = ([null, "Eve", "Alice"], [23, 67, 38])
+//]] analysis succeeds
+//   run pie-ast-type on #1 to ListType(NullableType(StrType()))
+//   run pie-ast-type on #2 to ListType(IntType())
+//test val declaration assign single to tuple bind [[ val (x, y) = [1, 2] ]] analysis fails
+//test val use before declaration [[ val x: int = [[x]]+1 ]] >= 1 error at #1
+//
+//test reference defined [[ [[name]] ]] analysis succeeds run pie-ast-type on #1 to StrType()
+//test reference undefined [[ [[nope]] ]] 1 error at #1
+//
+//test simple call no args [[ [[anotherFunc]]() ]] analysis succeeds resolve #1
+//test simple call 1 arg [[ [[double]](4) ]] analysis succeeds resolve #1
+//test simple call 3 args [[ [[argsFunc]](2, value, "yes") ]] analysis succeeds resolve #1
+//test simple call undefined func [[ [[unknown]](true) ]] >= 1 error at #1 // error like "undefined function"
+//test simple call incorrect arg count [[ double(3, 4) ]] error like "Unexpected number of arguments"
+//test simple call incorrect arg type [[ double([[ [3, 4] ]]) ]] >= 1 error at #1 // error like "Type mismatch"
+//
+//// todo: QCall, ImportCall; create & get suppliers
+//
+//test list without filter [[ [[ list ./example/ ]] ]] analysis succeeds run pie-ast-type on #1 to ListType(PathType())
+//test list with filter regex      [[ list /tmp/test/ with regex "file[0-9]+" ]] analysis succeeds
+//test list with filter pattern    [[ list /tmp/test/ with pattern "test" ]] analysis succeeds
+//test list with filter patterns   [[ list /tmp/test/ with patterns ["test", "attempt"] ]] analysis succeeds
+//test list with filter extension  [[ list /tmp/test/ with extension "pie" ]] analysis succeeds
+//test list with filter extensions [[ list /tmp/test/ with extensions ["c", "cpp"] ]] analysis succeeds
+//test list list expression not a path [[ list [["./foo"]] ]] 1 error at #1 // error like "Type mismatch"
+//test list regex not a string [[ list /a with regex [[./result]] ]] 1 error at #1 // error like "Type mismatch"
+//test list pattern not a string [[ list /a with pattern [[./result]] ]] 1 error at #1 // error like "Type mismatch"
+//test list patterns not a list [[ list /a with patterns [["result"]] ]] error like "Type mismatch" at #1
+//test list patterns not a string list [[ list /a with patterns [[ [2019, 2020] ]] ]] error like "Type mismatch" at #1
+//test list extension not a string [[ list /a with extension [[2020]] ]] 1 error at #1 // error like "Type mismatch"
+//test list extensions not a list [[ list /a with extensions [["txt"]] ]] error like "Type mismatch" at #1
+//test list extensions not a string list [[ list /a with extensions [[("h", "hpp")]] ]] error like "Type mismatch" at #1
+//
+//test walk without filter [[ [[ walk ./example/ ]] ]] analysis succeeds run pie-ast-type on #1 to ListType(PathType())
+//test walk with filter regex      [[ walk /tmp/test/ with regex "file[0-9]+" ]] analysis succeeds
+//test walk with filter pattern    [[ walk /tmp/test/ with pattern "test" ]] analysis succeeds
+//test walk with filter patterns   [[ walk /tmp/test/ with patterns ["test", "attempt"] ]] analysis succeeds
+//test walk with filter extension  [[ walk /tmp/test/ with extension "pie" ]] analysis succeeds
+//test walk with filter extensions [[ walk /tmp/test/ with extensions ["c", "cpp"] ]] analysis succeeds
+//test walk walk expression not a path [[ walk [["./foo"]] ]] 1 error at #1 // error like "Type mismatch"
+//test walk regex not a string [[ walk /a with regex [[./result]] ]] 1 error at #1 // error like "Type mismatch"
+//test walk pattern not a string [[ walk /a with pattern [[./result]] ]] 1 error at #1 // error like "Type mismatch"
+//test walk patterns not a list [[ walk /a with patterns [["result"]] ]] error like "Type mismatch" at #1
+//test walk patterns not a string list [[ walk /a with patterns [[ [2019, 2020] ]] ]] error like "Type mismatch" at #1
+//test walk extension not a string [[ walk /a with extension [[2020]] ]] 1 error at #1 // error like "Type mismatch"
+//test walk extensions not a list [[ walk /a with extensions [["txt"]] ]] error like "Type mismatch" at #1
+//test walk extensions not a string list [[ walk /a with extensions [[("h", "hpp")]] ]] error like "Type mismatch" at #1
+//
+//test read [[ [[ read ./config.txt ]] ]] analysis succeeds run pie-ast-type on #1 to NullableType(StrType())
+//test read not a path type [[ read [["./config"]] ]] 1 error at #1 // error like "Type mismatch"
+//
+//test exists [[ [[ exists ./config.txt ]] ]] analysis succeeds run pie-ast-type on #1 to BoolType()
+//test exists not a path type [[ exists [["./config"]] ]] 1 error at #1 // error like "Type mismatch"
+//
+//test return [[ return unit ]] analysis succeeds
+//test return incorrect type [[ return [["nope"]] ]] 1 error at #1
+//
+//test fail [[ fail "Not implemented" ]] analysis succeeds
+//test fail using string interpolation [[ fail "$[[value]]" ]] analysis succeeds resolve #1
+//test fail incorrect type [[ fail [[value]] ]] 1 error at #1
