@@ -81,7 +81,7 @@ test not equals disallow comparing non-compatible nullable types [[ 5? != ""? ]]
   0 warnings
 
 
-//test or [[ [[enableFinagle || value == 0]] ]] run pie-ast-type on #1 to BoolType()
+test or [[ [[enableFinagle || value == 0]] ]] run pie-ast-type on #1 to BoolType()
 //test testing [[ [[ false ]] ]] run pie-ast-type on #1 to BoolType()
 //
 //test or [[ val b: bool = enableFinagle || value == 0 ]] analysis succeeds
