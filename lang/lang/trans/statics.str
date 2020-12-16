@@ -7,6 +7,10 @@ imports
 
 signature
   constructors
+    NullTy : Type
+    TopTy : Type
+    FuncTy : List(Type) * Type -> Type
+
     UnitType     : StatixType
     BoolType     : StatixType
     IntType      : StatixType
