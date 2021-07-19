@@ -1,0 +1,11 @@
+module example:statix_query_intermiitently_empty
+
+data Animal = foreign java org.example.test.expression.Animal {}
+data Fish : Animal = foreign java org.example.test.expression.Fish {}
+
+data Fuz<T> = foreign java Foo {}
+
+func test(fuz: Fuz<Animal>) -> unit = {
+  val res: Fuz<Fish> = fuz;
+  unit
+}

@@ -1,0 +1,247 @@
+scope graph
+  #example/example.pie-s_merged_235-30 {
+    relations {
+      statics/base!root : #-s_1-1
+    }
+    edges {
+      statics/base!P : #example/example.pie-s_mod_2-50
+    }
+  }
+  #example/example.pie-s_merged_401-62 {
+    relations {
+      statics/base!root : #-s_1-1
+    }
+    edges {
+      statics/base!P : #example/example.pie-s3_46-54
+    }
+  }
+  #.-s_data_instance_134-14 {
+    relations {
+      statics/base!root : #-s_1-1
+    }
+    edges {
+      statics/base!P : #example/example.pie-s_data_def_271-45
+    }
+  }
+  #example/example.pie-s_merged_130-14 {
+    relations {
+      statics/base!root : #-s_1-1
+    }
+    edges {
+      statics/base!P : #example/example.pie-s_mod_2-50
+    }
+  }
+  #example/example.pie-s_func_93-18 {
+    relations {
+      statics/base!generic_params : []
+      statics/base!val : ("fuz", DataType(#.-s_data_instance_60-9))
+    }
+    edges {
+      statics/base!P : #example/example.pie-s_mod_2-50
+    }
+  }
+  #example/example.pie-s3_46-54 {
+    relations {
+      statics/base!val : ("res", DataType(#.-s_data_instance_42-7))
+    }
+    edges {
+      statics/base!P : #example/example.pie-s_block_28-2
+    }
+  }
+  #.-s_mod_tree_271-27 {
+    relations {
+      statics/base!root : #-s_1-1
+      statics/base!context : ("module_name_simple", ContextName("statix_query_intermiitently_empty"))
+    }
+    edges {
+      statics/base!FILE : #example/example.pie-s_mod_2-50
+    }
+  }
+  #.-s_merged_125-12 {
+    relations {
+      statics/base!root : #-s_1-1
+    }
+    edges {
+      statics/base!P : #example/example.pie-s_mod_2-50
+    }
+  }
+  #.-s_data_instance_60-9 {
+    relations {
+      statics/base!root : #-s_1-1
+      statics/base!generic_arg : ("T", DataType(#.-s_data_instance_134-14))
+    }
+    edges {
+      statics/base!P : #example/example.pie-s_data_def_152-27
+    }
+  }
+  #example/example.pie-s_data_def_213-37 {
+    relations {
+      statics/base!data_mods : []
+      statics/base!file : #example/example.pie-s_mod_2-50
+      statics/base!root : #-s_1-1
+      statics/base!context : ("foreign_java_impl", ContextName("org.example.test.expression.Fish"))
+                             ("data_name_unqualified", ContextName("Fish"))
+      statics/base!generic_params : []
+    }
+    edges {
+      statics/base!INHERIT : #.-s_data_instance_17-4
+    }
+  }
+  #.-s_data_instance_232-19 {
+    relations {
+      statics/base!root : #-s_1-1
+    }
+    edges {
+      statics/base!P : #example/example.pie-s_data_def_213-37
+    }
+  }
+  #example/example.pie-s_block_28-2 {
+    relations {
+    }
+    edges {
+      statics/base!P : #example/example.pie-s_func_inner_15-4
+    }
+  }
+  #example/example.pie-s_func_inner_15-4 {
+    relations {
+      statics/base!context : ("func_return_type", ContextType(UnitType()))
+    }
+    edges {
+      statics/base!P : #example/example.pie-s_func_93-18
+    }
+  }
+  #.-s_data_instance_17-4 {
+    relations {
+      statics/base!root : #-s_1-1
+    }
+    edges {
+      statics/base!P : #example/example.pie-s_data_def_271-45
+    }
+  }
+  #example/example.pie-s_merged_139-16 {
+    relations {
+      statics/base!root : #-s_1-1
+    }
+    edges {
+      statics/base!P : #example/example.pie-s_func_93-18
+                       #example/example.pie-s_empty_71-11
+    }
+  }
+  #.-s_merged_223-17 {
+    relations {
+      statics/base!root : #-s_1-1
+    }
+    edges {
+      statics/base!P : #example/example.pie-s3_46-54
+    }
+  }
+  #.-s_data_instance_42-7 {
+    relations {
+      statics/base!root : #-s_1-1
+      statics/base!generic_arg : ("T", DataType(#.-s_data_instance_232-19))
+    }
+    edges {
+      statics/base!P : #example/example.pie-s_data_def_152-27
+    }
+  }
+  #-s_1-1 {
+    relations {
+      statics/base!root : #-s_1-1
+      statics/base!mod_wip : MODULE(#example/example.pie-s_mod_2-50, ["example", "statix_query_intermiitently_empty"])
+    }
+    edges {
+      statics/base!MODULE_TREE_ROOT : #.-s_tree_root_267-34
+    }
+  }
+  #example/example.pie-s_mod_2-50 {
+    relations {
+      statics/base!file : #example/example.pie-s_mod_2-50
+      statics/base!context : ("module_name_simple", ContextName("statix_query_intermiitently_empty"))
+                             ("module_name_qualified", ContextModule(Module(ModuleList(["example"]), "statix_query_intermiitently_empty")))
+      statics/base!func : ("test", (#example/example.pie-s_func_93-18, FuncType([], [DataType(#.-s_data_instance_60-9)], UnitType())))
+      statics/base!data : ("Fish", #example/example.pie-s_data_def_213-37)
+                          ("Fuz", #example/example.pie-s_data_def_152-27)
+                          ("Animal", #example/example.pie-s_data_def_271-45)
+      statics/base!func_local : ("test", (#example/example.pie-s_func_93-18, FuncType([], [DataType(#.-s_data_instance_60-9)], UnitType())))
+      statics/base!data_local : ("Animal", #example/example.pie-s_data_def_271-45)
+                                ("Fuz", #example/example.pie-s_data_def_152-27)
+                                ("Fish", #example/example.pie-s_data_def_213-37)
+    }
+    edges {
+      statics/base!P : #-s_1-1
+      statics/base!MODULE_TREE_ROOT : #example/example.pie-s_tree_root_326-53
+    }
+  }
+  #.-s_mod_tree_269-31 {
+    relations {
+      statics/base!root : #-s_1-1
+      statics/base!context : ("module_name_simple", ContextName("example"))
+      statics/base!mod : ("statix_query_intermiitently_empty", #.-s_mod_tree_271-27)
+    }
+    edges {
+    }
+  }
+  #example/example.pie-s_data_def_152-27 {
+    relations {
+      statics/base!generic_param : (GenericParameter(#example/example.pie-s_data_def_152-27, "T"), (TopType(), BottomType()))
+      statics/base!root : #-s_1-1
+      statics/base!context : ("foreign_java_impl", ContextName("Foo"))
+                             ("data_name_unqualified", ContextName("Fuz"))
+      statics/base!generic_params : [(GenericParameter(#example/example.pie-s_data_def_152-27, "T"), TopType(), BottomType())]
+      statics/base!data_mods : []
+      statics/base!file : #example/example.pie-s_mod_2-50
+    }
+    edges {
+    }
+  }
+  #.-s_tree_root_267-34 {
+    relations {
+      statics/base!mod : ("example", #.-s_mod_tree_269-31)
+      statics/base!root : #-s_1-1
+      statics/base!context : ("module_name_simple", ContextName("<ROOT>"))
+    }
+    edges {
+    }
+  }
+  #example/example.pie-s_empty_366-60 {
+    relations {
+      statics/base!data_mods : []
+      statics/base!file : #example/example.pie-s_mod_2-50
+      statics/base!root : #-s_1-1
+      statics/base!context : ("module_name_simple", ContextName("<NONE>"))
+                             ("data_name_unqualified", ContextName("<NONE>"))
+    }
+    edges {
+    }
+  }
+  #example/example.pie-s_empty_71-11 {
+    relations {
+      statics/base!root : #-s_1-1
+      statics/base!data_mods : []
+      statics/base!file : #example/example.pie-s_mod_2-50
+      statics/base!context : ("module_name_simple", ContextName("<NONE>"))
+                             ("data_name_unqualified", ContextName("<NONE>"))
+    }
+    edges {
+    }
+  }
+  #example/example.pie-s_data_def_271-45 {
+    relations {
+      statics/base!root : #-s_1-1
+      statics/base!context : ("data_name_unqualified", ContextName("Animal"))
+                             ("foreign_java_impl", ContextName("org.example.test.expression.Animal"))
+      statics/base!generic_params : []
+      statics/base!data_mods : []
+      statics/base!file : #example/example.pie-s_mod_2-50
+    }
+    edges {
+    }
+  }
+  #example/example.pie-s_tree_root_326-53 {
+    relations {
+      statics/base!root : #-s_1-1
+      statics/base!context : ("module_name_simple", ContextName("<ROOT>"))
+    }
+    edges {
+    }
+  }

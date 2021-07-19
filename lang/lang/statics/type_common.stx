@@ -112,7 +112,10 @@ rules
    * Does not follow any edges.
    */
   getTypeArgs : scope -> list((TYPEID * TYPE))
-  getTypeArgs(s_data) = getArgTypes(occs) :-
+  getTypeArgs(s_data) = out@getArgTypes(occs) :-
+    {tmp}
+    ppTYPE(DataType(s_data)) == tmp,
+    try { false } | note $[DEBUG - type args in [tmp]: [out] -- s_data: [s_data]; occs: [occs]],
     query generic_arg filter e in s_data |-> occs.
 
     getArgType : (path * (TYPEID * TYPE)) -> (TYPEID * TYPE)

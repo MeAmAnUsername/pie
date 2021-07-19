@@ -53,6 +53,10 @@ rules // operations on types
   isAssignableTo(DataType(s_sub), DataType(s_super)) =
     isAssignableTo_dataTypes(s_sub, s_super, inherits, type_args, s_super_def)
   :-
+    {tmp1 tmp2}
+    tmp1 == ppTYPE(DataType(s_sub)),
+    tmp2 == ppTYPE(DataType(s_super)),
+    try { false } | note $[DEBUG - is [tmp1] assignable to [tmp2] - type_args of [tmp2]: [type_args] -- isAssignableTo_dataTypes(s_sub@[s_sub], s_super@[s_super], inherits@[inherits], type_args@[type_args], s_super_def@[s_super_def])],
     findGenericDef(s_super) == s_super_def,
     inherits(s_sub, s_super_def) == inherits,
     getTypeArgs(s_super) == type_args.
